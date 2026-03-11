@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEA — Guia de Estudo</title>
+    <style>
+        :root {
+            --primary: #2B6CB0;
+            --primary-light: #EBF4FF;
+            --primary-dark: #1A4971;
+            --accent: #E53E3E;
+            --bg: #F7FAFC;
+            --card: #FFFFFF;
+            --text: #2D3748;
+            --text-light: #718096;
+            --border: #E2E8F0;
+            --success: #38A169;
+            --warning: #D69E2E;
+            --info: #3182CE;
+            --sidebar-w: 280px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-w);
+            height: 100vh;
+            background: var(--primary-dark);
+            color: white;
+            overflow-y: auto;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1.2rem;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .sidebar-header p {
+            font-size: 0.78rem;
+            opacity: 0.7;
+            margin-top: 0.3rem;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 0.5rem 0;
+        }
+
+        .sidebar-section {
+            padding: 0.8rem 1.2rem 0.4rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.4);
+            font-weight: 700;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.65rem 1.2rem;
+            text-decoration: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.88rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.08);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: rgba(255,255,255,0.12);
+            color: white;
+            border-left-color: #63B3ED;
+        }
+
+        .nav-item.disabled {
+            opacity: 0.35;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .nav-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(255,255,255,0.1);
+            flex-shrink: 0;
+        }
+
+        .nav-item.active .nav-num {
+            background: #63B3ED;
+            color: var(--primary-dark);
+        }
+
+        .nav-item.done .nav-num {
+            background: var(--success);
+            color: white;
+        }
+
+        .nav-label { flex: 1; }
+
+        .nav-badge {
+            font-size: 0.6rem;
+            background: rgba(255,255,255,0.15);
+            padding: 0.15rem 0.45rem;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        .sidebar-footer {
+            padding: 1rem 1.2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.35);
+            text-align: center;
+        }
+
+        /* ===== MOBILE HAMBURGER ===== */
+        .mobile-topbar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: var(--primary-dark);
+            color: white;
+            z-index: 300;
+            align-items: center;
+            padding: 0 1rem;
+            gap: 0.8rem;
+        }
+
+        .hamburger {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .hamburger:hover { background: rgba(255,255,255,0.1); }
+
+        .mobile-topbar h1 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 150;
+        }
+
+        .overlay.show { display: block; }
+
+        /* ===== MAIN CONTENT ===== */
+        .content {
+            margin-left: var(--sidebar-w);
+            min-height: 100vh;
+        }
+
+        .content-inner {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 2rem 2rem 3rem;
+        }
+
+        /* Topic header */
+        .topic-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .topic-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .topic-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .topic-header p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* In-page navigation (section anchors) */
+        .page-sections {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .page-sections h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .page-sections ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4rem;
+        }
+
+        .page-sections a {
+            display: block;
+            padding: 0.45rem 0.8rem;
+            font-size: 0.88rem;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.15s;
+        }
+
+        .page-sections a:hover {
+            background: var(--primary-light);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            scroll-margin-top: 80px;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h3 .icon { font-size: 1.4rem; }
+
+        .card h4 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin: 1.2rem 0 0.6rem 0;
+        }
+
+        .card p { margin-bottom: 0.8rem; }
+
+        .card ul, .card ol { margin: 0.5rem 0 1rem 1.5rem; }
+        .card li { margin-bottom: 0.4rem; }
+
+        /* Highlight boxes */
+        .highlight {
+            border-radius: 8px;
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .highlight-blue { background: #EBF8FF; border-left: 4px solid var(--info); }
+        .highlight-green { background: #F0FFF4; border-left: 4px solid var(--success); }
+        .highlight-yellow { background: #FFFFF0; border-left: 4px solid var(--warning); }
+        .highlight-red { background: #FFF5F5; border-left: 4px solid var(--accent); }
+        .highlight strong { display: block; margin-bottom: 0.3rem; }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .levels-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+        }
+
+        .levels-table th, .levels-table td {
+            padding: 0.8rem 1rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        .levels-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .levels-table tr:nth-child(even) { background: var(--primary-light); }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .level-1 { background: var(--success); }
+        .level-2 { background: var(--warning); }
+        .level-3 { background: var(--accent); }
+
+        /* Comparison grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .comparison-box {
+            background: var(--primary-light);
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+
+        .comparison-box h5 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .comparison-box p { font-size: 0.9rem; margin: 0; }
+
+        /* Sources */
+        .sources {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2.5rem;
+            border: 1px solid var(--border);
+            scroll-margin-top: 80px;
+        }
+
+        .sources h3 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .source-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+
+        .source-item:last-child { border-bottom: none; }
+
+        .source-badge {
+            flex-shrink: 0;
+            background: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-top: 0.15rem;
+        }
+
+        .source-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .source-item a:hover { text-decoration: underline; }
+
+        .source-desc {
+            color: var(--text-light);
+            font-size: 0.82rem;
+            margin-top: 0.15rem;
+        }
+
+        /* Back to top */
+        .back-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            transition: opacity 0.2s;
+        }
+
+        .back-top.show { display: flex; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .mobile-topbar {
+                display: flex;
+            }
+
+            .content {
+                margin-left: 0;
+                padding-top: 56px;
+            }
+
+            .content-inner {
+                padding: 1.5rem 1rem 3rem;
+            }
+
+            .topic-header h2 { font-size: 1.4rem; }
+            .card { padding: 1.5rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .page-sections ul { grid-template-columns: 1fr; }
+            .levels-table { font-size: 0.85rem; }
+            .levels-table th, .levels-table td { padding: 0.5rem 0.6rem; }
+        }
+
+        @media (max-width: 400px) {
+            .content-inner { padding: 1rem 0.75rem 2rem; }
+            .card { padding: 1.2rem; }
+            .card h3 { font-size: 1.1rem; }
+        }
+
+        /* Scroll behavior */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <!-- MOBILE TOP BAR -->
+    <div class="mobile-topbar">
+        <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">&#9776;</button>
+        <h1>TEA — Guia de Estudo</h1>
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1>Transtorno do Espectro Autista</h1>
+            <p>Guia de Estudo Científico</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-section">Neurociência</div>
+
+            <a href="#tema1" class="nav-item active done" onclick="closeSidebar()">
+                <span class="nav-num">1</span>
+                <span class="nav-label">Definição e Diagnóstico</span>
+            </a>
+            <a class="nav-item disabled">
+                <span class="nav-num">2</span>
+                <span class="nav-label">Desenvolvimento Cerebral</span>
+                <span class="nav-badge">em breve</span>
+            </a>
+            <a class="nav-item disabled">
+                <span class="nav-num">3</span>
+                <span class="nav-label">Conectividade Neuronal</span>
+                <span class="nav-badge">em breve</span>
+            </a>
+            <a class="nav-item disabled">
+                <span class="nav-num">4</span>
+                <span class="nav-label">Processamento Sensorial</span>
+                <span class="nav-badge">em breve</span>
+            </a>
+            <a class="nav-item disabled">
+                <span class="nav-num">5</span>
+                <span class="nav-label">Neurônios Espelho</span>
+                <span class="nav-badge">em breve</span>
+            </a>
+            <a class="nav-item disabled">
+                <span class="nav-num">6</span>
+                <span class="nav-label">Estruturas Cerebrais</span>
+                <span class="nav-badge">em breve</span>
+            </a>
+            <a class="nav-item disabled">
+                <span class="nav-num">7</span>
+                <span class="nav-label">Genética do Autismo</span>
+                <span class="nav-badge">em breve</span>
+            </a>
+
+            <div class="sidebar-section">Temas Especiais</div>
+
+            <a class="nav-item disabled">
+                <span class="nav-num">8</span>
+                <span class="nav-label">Autismo em Meninas</span>
+                <span class="nav-badge">em breve</span>
+            </a>
+            <a class="nav-item disabled">
+                <span class="nav-num">9</span>
+                <span class="nav-label">Potenciais e Habilidades</span>
+                <span class="nav-badge">em breve</span>
+            </a>
+            <a class="nav-item disabled">
+                <span class="nav-num">10</span>
+                <span class="nav-label">Perspectivas Futuras</span>
+                <span class="nav-badge">em breve</span>
+            </a>
+
+            <div class="sidebar-section">Métodos Educativos</div>
+
+            <a class="nav-item disabled">
+                <span class="nav-num">11</span>
+                <span class="nav-label">TEACCH, ABA e Denver</span>
+                <span class="nav-badge">em breve</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            Baseado em fontes científicas oficiais<br>Material educativo — 2026
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+        <div class="content-inner">
+
+            <!-- TEMA 1 -->
+            <section id="tema1">
+
+                <div class="topic-header">
+                    <span class="topic-tag">Tema 1 de 11</span>
+                    <h2>Definição e Diagnóstico do TEA</h2>
+                    <p>O que é o Transtorno do Espectro Autista e como é diagnosticado segundo o DSM-5, a CID-11 e os principais órgãos de saúde</p>
+                </div>
+
+                <!-- In-page nav -->
+                <div class="page-sections">
+                    <h4>Neste tema</h4>
+                    <ul>
+                        <li><a href="#sec-oque">O que é o TEA?</a></li>
+                        <li><a href="#sec-dsm5">Critérios DSM-5</a></li>
+                        <li><a href="#sec-niveis">Níveis de Gravidade</a></li>
+                        <li><a href="#sec-cid11">CID-11 (OMS)</a></li>
+                        <li><a href="#sec-pratica">Diagnóstico na Prática</a></li>
+                        <li><a href="#sec-brasil">TEA no Brasil</a></li>
+                        <li><a href="#sec-comparacao">DSM-5 vs. CID-11</a></li>
+                        <li><a href="#fontes">Fontes e Referências</a></li>
+                    </ul>
+                </div>
+
+                <!-- O que é TEA -->
+                <div class="card" id="sec-oque">
+                    <h3><span class="icon">🧠</span> O que é o TEA?</h3>
+                    <p>
+                        O <strong>Transtorno do Espectro Autista (TEA)</strong> é um distúrbio do neurodesenvolvimento caracterizado por desenvolvimento atípico, manifestações comportamentais, déficits na comunicação e na interação social, e padrões de comportamentos repetitivos e estereotipados, podendo apresentar um repertório restrito de interesses e atividades.
+                    </p>
+
+                    <div class="highlight highlight-blue">
+                        <strong>Por que "espectro"?</strong>
+                        O termo "espectro" reflete a ampla variação na forma como o autismo se manifesta. Cada pessoa com TEA apresenta um conjunto único de características, que pode variar desde quadros leves — nos quais o indivíduo possui total independência — até situações que requerem apoio substancial nas atividades do dia a dia.
+                    </div>
+
+                    <p>
+                        Segundo o <strong>CDC</strong> (Centros de Controle e Prevenção de Doenças dos EUA), o TEA é uma "deficiência do desenvolvimento que pode causar desafios significativos nas áreas social, de comunicação e comportamental". O TEA não é uma doença — é uma condição neurológica que acompanha a pessoa ao longo de toda a vida.
+                    </p>
+
+                    <h4>Evolução do conceito</h4>
+                    <p>
+                        O <strong>DSM-5</strong> (Manual Diagnóstico e Estatístico de Transtornos Mentais, 5ª edição), publicado em 2013, unificou três diagnósticos anteriores do DSM-IV em uma única categoria:
+                    </p>
+                    <ul>
+                        <li><strong>Transtorno Autista</strong> (autismo clássico)</li>
+                        <li><strong>Síndrome de Asperger</strong></li>
+                        <li><strong>Transtorno Global do Desenvolvimento Sem Outra Especificação (TGD-SOE)</strong></li>
+                    </ul>
+                    <p>
+                        Todos passaram a ser classificados como <strong>Transtorno do Espectro Autista</strong>, reconhecendo que se trata de um espectro contínuo com diferentes níveis de gravidade.
+                    </p>
+                </div>
+
+                <!-- Critérios Diagnósticos DSM-5 -->
+                <div class="card" id="sec-dsm5">
+                    <h3><span class="icon">📋</span> Critérios Diagnósticos — DSM-5</h3>
+                    <p>
+                        O DSM-5 estabelece cinco critérios (A a E) que devem ser atendidos para o diagnóstico do TEA:
+                    </p>
+
+                    <h4>Critério A — Déficits na comunicação e interação social</h4>
+                    <p>Déficits persistentes na comunicação social e na interação social em múltiplos contextos, manifestados por <strong>todos os três</strong> itens a seguir:</p>
+                    <ol>
+                        <li><strong>Reciprocidade socioemocional</strong> — Dificuldades na abordagem social, na conversação recíproca e no compartilhamento de interesses, emoções ou afetos.</li>
+                        <li><strong>Comunicação não verbal</strong> — Déficits nos comportamentos comunicativos não verbais, como contato visual, expressões faciais, linguagem corporal e uso de gestos.</li>
+                        <li><strong>Relacionamentos</strong> — Dificuldades em desenvolver, manter e compreender relacionamentos, desde ajustar o comportamento a diferentes contextos sociais até fazer amizades e demonstrar interesse pelos outros.</li>
+                    </ol>
+
+                    <h4>Critério B — Padrões restritos e repetitivos</h4>
+                    <p>Padrões restritos e repetitivos de comportamento, interesses ou atividades, manifestados por <strong>pelo menos dois</strong> dos seguintes:</p>
+                    <ol>
+                        <li><strong>Movimentos, uso de objetos ou fala estereotipados ou repetitivos</strong> — como estereotipias motoras simples, alinhar objetos ou ecolalia.</li>
+                        <li><strong>Insistência em rotinas e resistência a mudanças</strong> — adesão inflexível a rotinas, padrões ritualizados de comportamento, com angústia diante de pequenas mudanças.</li>
+                        <li><strong>Interesses restritos e fixos</strong> — intensidade ou foco anormais em interesses altamente específicos.</li>
+                        <li><strong>Hiper ou hiporreatividade sensorial</strong> — reações incomuns a estímulos sensoriais como dor, temperatura, sons, texturas ou luz.</li>
+                    </ol>
+
+                    <h4>Critério C — Início precoce</h4>
+                    <p>Os sintomas devem estar presentes no <strong>início do período de desenvolvimento</strong>, embora possam não se manifestar plenamente até que as demandas sociais excedam as capacidades limitadas.</p>
+
+                    <h4>Critério D — Prejuízo funcional</h4>
+                    <p>Os sintomas causam <strong>prejuízo clinicamente significativo</strong> no funcionamento social, profissional ou em outras áreas importantes da vida.</p>
+
+                    <h4>Critério E — Diagnóstico diferencial</h4>
+                    <p>As perturbações não são melhor explicadas por <strong>deficiência intelectual</strong> ou por <strong>atraso global do desenvolvimento</strong>.</p>
+
+                    <div class="highlight highlight-yellow">
+                        <strong>Especificadores do DSM-5</strong>
+                        O clínico deve indicar: presença ou ausência de comprometimento intelectual, comprometimento de linguagem, condição médica ou genética associada, outro transtorno do neurodesenvolvimento ou comportamental, e catatonia.
+                    </div>
+                </div>
+
+                <!-- Níveis de gravidade -->
+                <div class="card" id="sec-niveis">
+                    <h3><span class="icon">📊</span> Níveis de Gravidade (DSM-5)</h3>
+                    <p>O DSM-5 estabeleceu três níveis de gravidade baseados no grau de apoio necessário:</p>
+
+                    <div class="table-wrapper">
+                        <table class="levels-table">
+                            <thead>
+                                <tr>
+                                    <th>Nível</th>
+                                    <th>Comunicação Social</th>
+                                    <th>Comportamentos Restritos/Repetitivos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="level-badge level-1">Nível 1</span><br>Necessita apoio</td>
+                                    <td>Sem apoio, os déficits na comunicação social causam prejuízos perceptíveis. Dificuldade em iniciar interações sociais. Pode parecer ter interesse diminuído em interagir.</td>
+                                    <td>Inflexibilidade de comportamento causa interferência significativa em um ou mais contextos. Dificuldade em trocar de atividades. Problemas de organização e planejamento dificultam a independência.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="level-badge level-2">Nível 2</span><br>Necessita apoio substancial</td>
+                                    <td>Déficits marcantes nas habilidades de comunicação verbal e não verbal. Prejuízos sociais aparentes mesmo com apoio. Interações limitadas e respostas reduzidas a aberturas sociais.</td>
+                                    <td>Inflexibilidade, dificuldade em lidar com mudanças e comportamentos restritos/repetitivos aparecem com frequência suficiente para serem óbvios ao observador casual. Angústia e/ou dificuldade em mudar o foco ou a ação.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="level-badge level-3">Nível 3</span><br>Necessita apoio muito substancial</td>
+                                    <td>Déficits graves nas habilidades de comunicação verbal e não verbal. Funcionamento muito limitado, iniciação de interações sociais muito reduzida e resposta mínima a aberturas sociais de outros.</td>
+                                    <td>Inflexibilidade extrema, dificuldade significativa em lidar com mudanças. Comportamentos restritos/repetitivos interferem marcadamente no funcionamento em todas as esferas. Grande angústia ao mudar o foco ou a ação.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- CID-11 -->
+                <div class="card" id="sec-cid11">
+                    <h3><span class="icon">🌐</span> Classificação na CID-11 (OMS)</h3>
+                    <p>
+                        A <strong>Classificação Internacional de Doenças, 11ª revisão (CID-11)</strong>, da Organização Mundial da Saúde, classifica o TEA sob o código <strong>6A02</strong>. A CID-11 entrou em vigor em janeiro de 2022 e trouxe mudanças significativas:
+                    </p>
+
+                    <h4>Três características essenciais</h4>
+                    <ol>
+                        <li><strong>Déficits na comunicação social</strong> — Déficits persistentes na capacidade de iniciar e manter interação social recíproca e comunicação social.</li>
+                        <li><strong>Padrões restritos e repetitivos</strong> — Uma gama de padrões restritos, repetitivos e inflexíveis de comportamento, interesses ou atividades que são claramente atípicos ou excessivos para a idade e contexto sociocultural do indivíduo.</li>
+                        <li><strong>Prejuízo funcional</strong> — Os déficits são suficientemente graves para causar prejuízo no funcionamento pessoal, familiar, social, educacional, ocupacional ou em outras áreas importantes.</li>
+                    </ol>
+
+                    <div class="highlight highlight-green">
+                        <strong>Novidade da CID-11</strong>
+                        Diferentemente da CID-10, a CID-11 incluiu as <strong>respostas atípicas a estímulos sensoriais</strong> como uma característica central do diagnóstico — alinhando-se ao DSM-5. Além disso, oferece <strong>oito subcategorias</strong> de TEA para diferenciar indivíduos com base no nível intelectual e nas habilidades de linguagem.
+                    </div>
+
+                    <h4>Subcategorias da CID-11</h4>
+                    <div class="comparison-grid">
+                        <div class="comparison-box">
+                            <h5>Com deficiência intelectual</h5>
+                            <p>Com e sem comprometimento da linguagem funcional</p>
+                        </div>
+                        <div class="comparison-box">
+                            <h5>Sem deficiência intelectual</h5>
+                            <p>Com e sem comprometimento da linguagem funcional</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diagnóstico na prática -->
+                <div class="card" id="sec-pratica">
+                    <h3><span class="icon">🔍</span> Como é Feito o Diagnóstico na Prática</h3>
+                    <p>
+                        O diagnóstico do TEA é <strong>essencialmente clínico</strong>. Não existe exame de sangue, ressonância ou teste genético que, isoladamente, confirme o autismo. O processo envolve:
+                    </p>
+                    <ul>
+                        <li><strong>Observação direta</strong> do comportamento da criança</li>
+                        <li><strong>Entrevistas</strong> com pais e cuidadores sobre o desenvolvimento</li>
+                        <li><strong>Aplicação de instrumentos padronizados</strong> de triagem e avaliação</li>
+                        <li><strong>Avaliação multidisciplinar</strong> (neuropediatra, psicólogo, fonoaudiólogo, etc.)</li>
+                    </ul>
+
+                    <h4>Instrumentos de triagem</h4>
+                    <p>
+                        Um dos instrumentos mais utilizados mundialmente é o <strong>M-CHAT-R</strong> (Modified Checklist for Autism in Toddlers, Revised), aplicável a partir dos <strong>16 meses de idade</strong>. No Brasil, o M-CHAT-R foi incluído na Caderneta de Saúde da Criança (3ª edição, 2022) pelo Ministério da Saúde.
+                    </p>
+
+                    <h4>Idade do diagnóstico</h4>
+                    <div class="highlight highlight-red">
+                        <strong>Detecção precoce é fundamental</strong>
+                        Sinais de alerta podem ser percebidos nos primeiros meses de vida. O diagnóstico geralmente é estabelecido entre os <strong>2 e 3 anos de idade</strong>. Segundo dados do CDC (2025), crianças com TEA e deficiência intelectual recebem diagnóstico mais cedo (mediana de <strong>43 meses</strong>) do que crianças sem deficiência intelectual (<strong>49 meses</strong>). A intervenção precoce deve começar <strong>mesmo antes da confirmação diagnóstica</strong>, diante da suspeita.
+                    </div>
+                </div>
+
+                <!-- TEA no Brasil -->
+                <div class="card" id="sec-brasil">
+                    <h3><span class="icon">🇧🇷</span> TEA no Brasil</h3>
+                    <p>
+                        No Brasil, o Sistema Único de Saúde (SUS) oferece uma rede de assistência para pessoas com TEA:
+                    </p>
+                    <ul>
+                        <li><strong>263 Centros Especializados em Reabilitação (CER)</strong> — para diagnóstico, tratamento e tecnologia assistiva</li>
+                        <li><strong>282 Centros de Atenção Psicossocial Infantojuvenil (CAPSi)</strong></li>
+                        <li><strong>2.795 Centros de Atenção Psicossocial (CAPS)</strong></li>
+                    </ul>
+                    <p>
+                        Em 2021, o SUS realizou <strong>9,6 milhões de atendimentos ambulatoriais</strong> para pessoas com autismo, sendo 4,1 milhões para crianças de até 9 anos. O Ministério da Saúde também lançou a <strong>Linha de Cuidado para Crianças com TEA</strong>, organizando o fluxo de atendimento e promovendo a detecção precoce.
+                    </p>
+
+                    <div class="highlight highlight-blue">
+                        <strong>Lei Berenice Piana (Lei 12.764/2012)</strong>
+                        Criou a Política Nacional de Proteção dos Direitos da Pessoa com Transtorno do Espectro Autista. A lei equipara pessoas com TEA a pessoas com deficiência para todos os efeitos legais, garantindo acesso a educação, saúde e proteção social. A Sociedade Brasileira de Pediatria recomenda que <strong>toda criança seja triada para TEA entre 18 e 24 meses de idade</strong>, mesmo sem sinais clínicos evidentes.
+                    </div>
+                </div>
+
+                <!-- DSM-5 vs CID-11 -->
+                <div class="card" id="sec-comparacao">
+                    <h3><span class="icon">⚖️</span> DSM-5 vs. CID-11 — Comparação Rápida</h3>
+                    <div class="table-wrapper">
+                        <table class="levels-table">
+                            <thead>
+                                <tr>
+                                    <th>Aspecto</th>
+                                    <th>DSM-5</th>
+                                    <th>CID-11</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Publicação</strong></td>
+                                    <td>2013 (APA)</td>
+                                    <td>2022 (OMS)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Código</strong></td>
+                                    <td>299.00</td>
+                                    <td>6A02</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Domínios centrais</strong></td>
+                                    <td>2 (comunicação social + comportamentos restritos)</td>
+                                    <td>2 (comunicação social + comportamentos restritos)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Processamento sensorial</strong></td>
+                                    <td>Incluído no Critério B</td>
+                                    <td>Incluído como característica central</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Subtipos</strong></td>
+                                    <td>Não (espectro único com 3 níveis de gravidade)</td>
+                                    <td>Sim (8 subcategorias baseadas em linguagem e QI)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Uso principal</strong></td>
+                                    <td>Pesquisa e clínica (EUA)</td>
+                                    <td>Saúde pública e codificação (global)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Fontes -->
+            <section class="sources" id="fontes">
+                <h3>📚 Fontes e Referências</h3>
+
+                <div class="source-item">
+                    <span class="source-badge">CDC</span>
+                    <div>
+                        <a href="https://www.cdc.gov/autism/index.html" target="_blank" rel="noopener">Autism Spectrum Disorder (ASD) — CDC</a>
+                        <div class="source-desc">Página principal do CDC sobre TEA: definição, sinais e sintomas, dados e estatísticas</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">CDC</span>
+                    <div>
+                        <a href="https://www.cdc.gov/autism/hcp/diagnosis/index.html" target="_blank" rel="noopener">Clinical Testing and Diagnosis for ASD — CDC</a>
+                        <div class="source-desc">Orientações clínicas para diagnóstico e avaliação do TEA</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">DSM-5</span>
+                    <div>
+                        <a href="https://iacc.hhs.gov/about-iacc/subcommittees/resources/dsm5-diagnostic-criteria.shtml" target="_blank" rel="noopener">DSM-5 Diagnostic Criteria — IACC / HHS</a>
+                        <div class="source-desc">Critérios diagnósticos completos do DSM-5 para TEA (Departamento de Saúde dos EUA)</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">DSM-5</span>
+                    <div>
+                        <a href="https://www.research.chop.edu/car-autism-roadmap/diagnostic-criteria-for-autism-spectrum-disorder-in-the-dsm-5" target="_blank" rel="noopener">Diagnostic Criteria for ASD in the DSM-5 — CHOP Research Institute</a>
+                        <div class="source-desc">Hospital Infantil da Filadélfia — explicação dos critérios DSM-5</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">OMS</span>
+                    <div>
+                        <a href="https://icd.who.int/en/" target="_blank" rel="noopener">ICD-11 — World Health Organization</a>
+                        <div class="source-desc">Classificação Internacional de Doenças, 11ª revisão (CID-11)</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">OMS</span>
+                    <div>
+                        <a href="https://www.nature.com/articles/s41380-023-02354-y" target="_blank" rel="noopener">Autism spectrum disorder in ICD-11 — Molecular Psychiatry (Nature)</a>
+                        <div class="source-desc">Reflexão crítica sobre o impacto da CID-11 na prática clínica e pesquisa</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">PMC</span>
+                    <div>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9881114/" target="_blank" rel="noopener">Innovations of the ICD-11 in the Field of ASD — PMC/NIH</a>
+                        <div class="source-desc">Artigo científico sobre as inovações da CID-11 no campo do TEA</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">PMC</span>
+                    <div>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7082249/" target="_blank" rel="noopener">Autism spectrum disorder: definition, epidemiology, causes, and clinical evaluation — PMC/NIH</a>
+                        <div class="source-desc">Revisão científica completa: definição, epidemiologia, causas e avaliação clínica</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">Brasil</span>
+                    <div>
+                        <a href="https://linhasdecuidado.saude.gov.br/portal/transtorno-do-espectro-autista/definicao-tea/" target="_blank" rel="noopener">Definição — TEA na Criança — Ministério da Saúde</a>
+                        <div class="source-desc">Linhas de Cuidado do Ministério da Saúde do Brasil para TEA</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">Brasil</span>
+                    <div>
+                        <a href="https://www.gov.br/saude/pt-br/assuntos/noticias/2022/abril/tea-saiba-o-que-e-o-transtorno-do-espectro-autista-e-como-o-sus-tem-dado-assistencia-a-pacientes-e-familiares" target="_blank" rel="noopener">TEA — Assistência do SUS — Ministério da Saúde</a>
+                        <div class="source-desc">Informações sobre o atendimento do SUS a pacientes com TEA e familiares</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">Brasil</span>
+                    <div>
+                        <a href="https://www.sbp.com.br/fileadmin/user_upload/Ped._Desenvolvimento_-_21775b-MO_-_Transtorno_do_Espectro_do_Autismo.pdf" target="_blank" rel="noopener">Manual de Orientação — TEA — Sociedade Brasileira de Pediatria</a>
+                        <div class="source-desc">Documento oficial da SBP sobre diagnóstico e acompanhamento do TEA</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">Brasil</span>
+                    <div>
+                        <a href="https://agenciabrasil.ebc.com.br/saude/noticia/2024-04/entenda-o-que-e-o-transtorno-do-espectro-autista" target="_blank" rel="noopener">Entenda o que é o TEA — Agência Brasil</a>
+                        <div class="source-desc">Reportagem da Agência Brasil sobre o Transtorno do Espectro Autista</div>
+                    </div>
+                </div>
+
+                <div class="source-item">
+                    <span class="source-badge">CDC</span>
+                    <div>
+                        <a href="https://www.cdc.gov/mmwr/volumes/74/ss/ss7402a1.htm" target="_blank" rel="noopener">Prevalence and Early Identification of ASD — MMWR 2025</a>
+                        <div class="source-desc">Dados mais recentes (2025) de prevalência e identificação precoce do TEA nos EUA</div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <p>Material de estudo elaborado com base em fontes científicas oficiais. Não substitui orientação profissional.</p>
+                <p>Conteúdo organizado para fins educativos — 2026</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Back to top -->
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0})" aria-label="Voltar ao topo">&#9650;</button>
+
+    <script>
+        // Sidebar toggle
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('show');
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('overlay').classList.remove('show');
+        }
+
+        // Back to top button
+        window.addEventListener('scroll', function() {
+            var btn = document.getElementById('backTop');
+            if (window.scrollY > 400) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+
+        // Close sidebar on ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeSidebar();
+        });
+    </script>
+
+</body>
+</html>

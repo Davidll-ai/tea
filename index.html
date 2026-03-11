@@ -408,7 +408,7 @@
                 <div class="card-icon">🧠</div>
                 <h3>Neurociência do TEA</h3>
                 <p>Definição, diagnóstico, desenvolvimento cerebral, conectividade neuronal e mais 11 temas de estudo</p>
-                <span class="card-badge badge-ready">3 temas prontos</span>
+                <span class="card-badge badge-ready">4 temas prontos</span>
             </a>
 
             <a class="landing-card" onclick="showSection('sec-metodos')">
@@ -487,7 +487,7 @@
                 <a href="#tema1" onclick="document.getElementById('tema1').scrollIntoView({behavior:'smooth'});return false;">1. Definição e Diagnóstico</a>
                 <a href="#tema2" onclick="document.getElementById('tema2').scrollIntoView({behavior:'smooth'});return false;">2. Desenv. Cerebral</a>
                 <a href="#tema3" onclick="document.getElementById('tema3').scrollIntoView({behavior:'smooth'});return false;">3. Conectividade Neuronal</a>
-                <a class="disabled" style="opacity:0.4;pointer-events:none;">4. Proc. Sensorial — em breve</a>
+                <a href="#tema4" onclick="document.getElementById('tema4').scrollIntoView({behavior:'smooth'});return false;">4. Proc. Sensorial</a>
                 <a class="disabled" style="opacity:0.4;pointer-events:none;">5. Neurônios Espelho — em breve</a>
                 <a class="disabled" style="opacity:0.4;pointer-events:none;">6. Estruturas Cerebrais — em breve</a>
                 <a class="disabled" style="opacity:0.4;pointer-events:none;">7. Genética — em breve</a>
@@ -1116,6 +1116,254 @@
                 <div class="source-item"><span class="source-badge">PMC</span><div><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4506751/" target="_blank" rel="noopener">Face processing in ASD: from brain regions to brain networks — PMC</a><div class="source-desc">Processamento de rostos no autismo: da FFA às redes cerebrais</div></div></div>
                 <div class="source-item"><span class="source-badge">Nature</span><div><a href="https://www.nature.com/articles/s44220-024-00349-4" target="_blank" rel="noopener">A multimodal neural signature of face processing in autism — Nature Mental Health (2024)</a><div class="source-desc">Assinatura neural do processamento facial no autismo</div></div></div>
                 <div class="source-item"><span class="source-badge">PMC</span><div><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6732925/" target="_blank" rel="noopener">Revisiting the excitation/inhibition imbalance hypothesis of ASD — PMC</a><div class="source-desc">Revisão crítica da hipótese E/I no autismo</div></div></div>
+            </div>
+
+            <!-- ================================================ -->
+            <!-- TEMA 4: PROCESSAMENTO SENSORIAL -->
+            <!-- ================================================ -->
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 3px solid var(--primary-light);" id="tema4">
+                <h3 style="font-size:1.6rem; color: var(--primary-dark); margin-bottom: 0.5rem;">
+                    <span class="icon">🎯</span> Tema 4 — Processamento Sensorial no TEA
+                </h3>
+                <p style="color: var(--text-light); margin-bottom: 2rem;">Como o cérebro autista percebe, filtra e responde às informações sensoriais — e por que isso muda tudo na prática profissional</p>
+            </div>
+
+            <!-- CARD 4.1: Os 8 Sentidos -->
+            <div class="card">
+                <h3><span class="icon">👁️</span> 4.1 — Muito além dos 5 sentidos: os 8 sistemas sensoriais</h3>
+                <p>Quando pensamos em sentidos, lembramos de visão, audição, tato, olfato e paladar. Mas o corpo humano possui <strong>pelo menos 8 sistemas sensoriais</strong> que trabalham juntos para nos ajudar a entender o mundo. No TEA, qualquer um (ou vários) destes sistemas pode funcionar de forma diferente.</p>
+
+                <div class="highlight highlight-blue">
+                    <strong>💡 Dado fundamental:</strong> Desde 2013, o <strong>DSM-5</strong> incluiu oficialmente as diferenças sensoriais como critério diagnóstico do TEA — reconhecendo que a hiper ou hiporreatividade a estímulos sensoriais é uma característica central, não secundária, do autismo (APA, 2013).
+                </div>
+
+                <table>
+                    <thead>
+                        <tr><th>Sistema Sensorial</th><th>O que detecta</th><th>Exemplo no cotidiano</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>👁️ Visual</strong></td><td>Luz, cores, formas, movimento</td><td>Leitura, reconhecimento de rostos, luzes fluorescentes</td></tr>
+                        <tr><td><strong>👂 Auditivo</strong></td><td>Sons, frequências, localização sonora</td><td>Conversas, alarmes, ruído de fundo</td></tr>
+                        <tr><td><strong>✋ Tátil</strong></td><td>Pressão, temperatura, textura, dor</td><td>Roupas na pele, abraços, etiquetas</td></tr>
+                        <tr><td><strong>👃 Olfativo</strong></td><td>Odores e aromas</td><td>Perfumes, comida, produtos de limpeza</td></tr>
+                        <tr><td><strong>👅 Gustativo</strong></td><td>Sabores (doce, salgado, amargo, ácido, umami)</td><td>Texturas de alimentos, sabores misturados</td></tr>
+                        <tr><td><strong>🔄 Vestibular</strong></td><td>Equilíbrio, gravidade, movimento da cabeça</td><td>Balanço, escadas, carros em movimento</td></tr>
+                        <tr><td><strong>💪 Proprioceptivo</strong></td><td>Posição do corpo, força muscular, pressão nos músculos</td><td>Subir escadas sem olhar, escrever, abraços apertados</td></tr>
+                        <tr><td><strong>🫀 Interoceptivo</strong></td><td>Sinais internos do corpo</td><td>Fome, sede, dor, necessidade de ir ao banheiro, emoções</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight highlight-green">
+                    <strong>🌟 Para a profissional:</strong> Muitas crianças autistas têm dificuldade em <strong>identificar sinais interoceptivos</strong> — podem não perceber que estão com fome, com dor ou precisam ir ao banheiro. Isso não é "pirraça" ou "desatenção", é uma diferença neurológica real. O estudo de Quattrocki & Friston (2014) propôs que dificuldades interoceptivas podem estar na raiz de muitas características do TEA.
+                </div>
+            </div>
+
+            <!-- CARD 4.2: Como funciona o processamento sensorial -->
+            <div class="card">
+                <h3><span class="icon">⚡</span> 4.2 — O filtro sensorial: como o cérebro processa informações</h3>
+                <p>A cada segundo, nosso cérebro recebe <strong>milhões de informações sensoriais</strong>. Para funcionar, ele precisa <strong>filtrar, organizar e priorizar</strong> esses dados. No TEA, esse sistema de filtragem funciona de forma diferente.</p>
+
+                <h4 style="margin-top: 1.5rem;">O caminho sensorial normal:</h4>
+                <div style="background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); padding: 1.5rem; border-radius: 12px; margin: 1rem 0;">
+                    <p style="text-align: center; font-size: 1rem;">
+                        <strong>Estímulo</strong> (ex: som) → <strong>Receptor</strong> (ouvido) → <strong>Tálamo</strong> (filtro central) → <strong>Córtex</strong> (processamento) → <strong>Resposta</strong> (comportamento)
+                    </p>
+                </div>
+
+                <h4 style="margin-top: 1.5rem;">O que acontece diferente no TEA:</h4>
+                <ul>
+                    <li><strong>Filtragem talâmica alterada:</strong> O tálamo, que funciona como o "porteiro" do cérebro, pode deixar passar informações demais ou filtrar informações importantes. Green et al. (2015) demonstraram com fMRI que crianças autistas apresentam conectividade tálamo-cortical atípica</li>
+                    <li><strong>Integração multissensorial prejudicada:</strong> O cérebro tem dificuldade em combinar informações de diferentes sentidos simultaneamente. Stevenson et al. (2014) mostraram que a "janela de integração temporal" — o tempo que o cérebro leva para juntar informação de dois sentidos — é mais ampla no TEA</li>
+                    <li><strong>Habituação reduzida:</strong> Normalmente, nos acostumamos a estímulos repetidos (ex: o som do relógio). No TEA, o cérebro pode continuar reagindo como se cada estímulo fosse novo. Isto foi demonstrado por Vivanti et al. (2018) usando eye-tracking</li>
+                    <li><strong>Modulação sensorial atípica:</strong> A capacidade de "ajustar o volume" das sensações — aumentando a atenção para sinais importantes e reduzindo para irrelevantes — funciona de forma diferente (Baranek et al., 2006)</li>
+                </ul>
+
+                <div class="highlight highlight-yellow">
+                    <strong>⚠️ Analogia prática:</strong> Imagine um rádio com o volume automático quebrado. Às vezes o som está no máximo e você não consegue baixar (hipersensibilidade). Outras vezes está tão baixo que você quase não ouve (hipossensibilidade). E o dial muda sozinho sem aviso. É assim que muitas pessoas autistas descrevem sua experiência sensorial.
+                </div>
+            </div>
+
+            <!-- CARD 4.3: Hipersensibilidade -->
+            <div class="card">
+                <h3><span class="icon">🔊</span> 4.3 — Hipersensibilidade (Hiperresponsividade): quando o mundo é "demais"</h3>
+                <p>A <strong>hipersensibilidade</strong> ocorre quando o sistema nervoso reage de forma <strong>exagerada</strong> a estímulos que a maioria das pessoas consideraria normais ou até imperceptíveis. É como se o "volume" estivesse permanentemente no máximo.</p>
+
+                <div class="highlight highlight-blue">
+                    <strong>📊 Dado científico:</strong> O estudo de Marco et al. (2011), publicado em <em>Brain Research</em>, usando magnetoencefalografia (MEG), demonstrou que crianças autistas com hipersensibilidade tátil apresentam respostas corticais somatossensoriais <strong>significativamente mais fortes</strong> do que crianças típicas — confirmando que a hipersensibilidade tem base neurológica mensurável.
+                </div>
+
+                <table>
+                    <thead>
+                        <tr><th>Sentido</th><th>Exemplos de hipersensibilidade</th><th>Comportamentos observáveis</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>👂 Auditivo</strong></td><td>Sons cotidianos parecem extremamente altos: aspirador, secador, descarga, conversas em grupo</td><td>Tapar os ouvidos, fugir de ambientes barulhentos, gritar para "cobrir" o som</td></tr>
+                        <tr><td><strong>👁️ Visual</strong></td><td>Luzes fluorescentes piscam visivelmente, cores brilhantes são desconfortáveis</td><td>Apertar os olhos, evitar ambientes claros, preferir penumbra</td></tr>
+                        <tr><td><strong>✋ Tátil</strong></td><td>Etiquetas de roupa "queimam", certas texturas são insuportáveis, toque leve incomoda</td><td>Arrancar etiquetas, recusar certos tecidos, evitar abraços leves</td></tr>
+                        <tr><td><strong>👃 Olfativo</strong></td><td>Perfumes, produtos de limpeza, comida causam náusea</td><td>Evitar cozinhas, banheiros, pessoas perfumadas</td></tr>
+                        <tr><td><strong>👅 Gustativo</strong></td><td>Sabores são muito intensos, texturas na boca são intoleráveis</td><td>Alimentação extremamente restrita, recusa de alimentos novos (ARFID)</td></tr>
+                        <tr><td><strong>🔄 Vestibular</strong></td><td>Movimento causa tontura rápida, medo de altura e instabilidade</td><td>Evitar balanços, escadas rolantes, elevadores</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight highlight-green">
+                    <strong>🌟 Na prática com crianças:</strong> Uma criança que "se recusa" a comer na escola pode estar em sofrimento real com o cheiro da cantina. Uma que "não para quieta" na sala pode estar tentando escapar da luz fluorescente. <strong>O primeiro passo profissional é sempre perguntar: "Este comportamento pode ser uma resposta sensorial?"</strong>
+                </div>
+            </div>
+
+            <!-- CARD 4.4: Hipossensibilidade -->
+            <div class="card">
+                <h3><span class="icon">🔇</span> 4.4 — Hipossensibilidade (Hiporresponsividade): quando o mundo "não chega"</h3>
+                <p>A <strong>hipossensibilidade</strong> é o oposto: o sistema nervoso <strong>sub-responde</strong> a estímulos, como se o "volume" estivesse muito baixo. A pessoa pode precisar de estímulos mais intensos para registrar a informação sensorial.</p>
+
+                <div class="highlight highlight-blue">
+                    <strong>📊 Dado científico:</strong> Ben-Sasson et al. (2009) realizaram uma meta-análise de 14 estudos (n=1.310) e encontraram que a <strong>hiporresponsividade</strong> é o padrão sensorial que mais claramente distingue crianças autistas de crianças com desenvolvimento típico — sendo mais prevalente que a hipersensibilidade.
+                </div>
+
+                <table>
+                    <thead>
+                        <tr><th>Sentido</th><th>Exemplos de hipossensibilidade</th><th>Comportamentos de busca sensorial</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>👂 Auditivo</strong></td><td>Parece não ouvir quando chamam, não se assusta com sons altos</td><td>Aumentar o volume da TV, fazer barulhos repetitivos, bater objetos</td></tr>
+                        <tr><td><strong>👁️ Visual</strong></td><td>Não percebe detalhes visuais, fascínio por objetos brilhantes</td><td>Olhar fixamente para luzes, girar objetos na frente dos olhos</td></tr>
+                        <tr><td><strong>✋ Tátil</strong></td><td>Alta tolerância à dor, não percebe cortes ou batidas</td><td>Tocar tudo, buscar texturas fortes, pedir abraços muito apertados</td></tr>
+                        <tr><td><strong>💪 Proprioceptivo</strong></td><td>Dificuldade em perceber a posição do corpo, "desajeitamento"</td><td>Pular, correr, bater com força, morder objetos, buscar pressão profunda</td></tr>
+                        <tr><td><strong>🔄 Vestibular</strong></td><td>Parece não sentir tontura, alta tolerância a movimento</td><td>Girar no próprio eixo, balançar-se, buscar brinquedos de movimento intenso</td></tr>
+                        <tr><td><strong>🫀 Interoceptivo</strong></td><td>Não percebe fome, sede, dor, necessidade de ir ao banheiro</td><td>Comer demais ou de menos, acidentes com higiene, não relatar dor</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight highlight-yellow">
+                    <strong>⚠️ Importante — Perfil misto:</strong> A maioria das crianças autistas NÃO é puramente hiper ou hiposensível. O estudo de Tomchek & Dunn (2007), usando o Sensory Profile com 281 crianças autistas, demonstrou que <strong>95% apresentavam diferenças sensoriais</strong>, e a maioria tinha um perfil misto — hipersensível em alguns sentidos e hipossensível em outros, podendo variar conforme o dia, o nível de estresse e o ambiente.
+                </div>
+            </div>
+
+            <!-- CARD 4.5: Sobrecarga Sensorial -->
+            <div class="card">
+                <h3><span class="icon">💥</span> 4.5 — Sobrecarga sensorial e meltdowns: a tempestade neurológica</h3>
+                <p>Quando o sistema nervoso recebe mais informação sensorial do que consegue processar, ocorre a <strong>sobrecarga sensorial</strong>. É como um computador com todas as abas abertas — eventualmente, ele trava. No TEA, esse limiar de sobrecarga é frequentemente mais baixo.</p>
+
+                <h4 style="margin-top: 1.5rem;">A cascata da sobrecarga:</h4>
+                <div style="background: linear-gradient(135deg, #FEF2F2 0%, #FECACA 100%); padding: 1.5rem; border-radius: 12px; margin: 1rem 0;">
+                    <ol>
+                        <li><strong>Acúmulo sensorial:</strong> Múltiplos estímulos se somam ao longo do tempo (ruído + luz + toque + cheiros + expectativas sociais)</li>
+                        <li><strong>Esgotamento dos filtros:</strong> O sistema talâmico de filtragem se sobrecarrega, perdendo a capacidade de priorizar</li>
+                        <li><strong>Ativação do sistema de estresse:</strong> O eixo HPA (hipotálamo-hipófise-adrenal) dispara cortisol e adrenalina — resposta de luta/fuga/congelamento</li>
+                        <li><strong>Ponto de ruptura:</strong> O córtex pré-frontal (controle executivo) "desliga", e o sistema límbico assume o controle</li>
+                        <li><strong>Meltdown ou Shutdown:</strong> Explosão emocional/comportamental (meltdown) OU retraimento total (shutdown)</li>
+                    </ol>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr><th>Aspecto</th><th>Meltdown (explosão)</th><th>Shutdown (retraimento)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Aparência</strong></td><td>Choro intenso, gritos, agressão, autolesão</td><td>Mutismo, olhar vazio, imobilidade, desconexão</td></tr>
+                        <tr><td><strong>Neurologia</strong></td><td>Dominação do sistema simpático (luta/fuga)</td><td>Resposta dorsal vagal (congelamento/dissociação)</td></tr>
+                        <tr><td><strong>Duração</strong></td><td>Minutos a 1 hora (pico rápido, descida lenta)</td><td>Minutos a horas (pode parecer "calma")</td></tr>
+                        <tr><td><strong>O que fazer</strong></td><td>Reduzir estímulos, não falar demais, garantir segurança</td><td>Ambiente seguro, silêncio, sem pressão para interagir</td></tr>
+                        <tr><td><strong>O que NÃO fazer</strong></td><td>Gritar, segurar à força, punir, raciocinar naquele momento</td><td>Forçar resposta, interpretar como "preguiça" ou "desrespeito"</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight highlight-green">
+                    <strong>🌟 Conceito fundamental — Carga alostática sensorial:</strong> O conceito de <strong>carga alostática</strong> (McEwen, 2008) explica que o estresse se acumula. Uma criança autista pode lidar bem com a escola de manhã, mas entrar em meltdown à tarde — não por causa do último estímulo, mas por causa de <strong>tudo que se acumulou ao longo do dia</strong>. Profissionais devem pensar na gestão sensorial como um "orçamento" diário, não como eventos isolados.
+                </div>
+            </div>
+
+            <!-- CARD 4.6: Teoria de Integração Sensorial -->
+            <div class="card">
+                <h3><span class="icon">🧩</span> 4.6 — Integração Sensorial de Ayres: a base teórica</h3>
+                <p>A <strong>Teoria de Integração Sensorial</strong>, desenvolvida pela Dra. <strong>A. Jean Ayres</strong> nos anos 1970, é o modelo teórico mais influente para entender e tratar diferenças sensoriais. Ayres, terapeuta ocupacional e neurocientista, propôs que o cérebro precisa organizar e integrar informações sensoriais para produzir comportamento adaptativo.</p>
+
+                <h4 style="margin-top: 1.5rem;">Os 4 padrões sensoriais (Modelo de Dunn):</h4>
+                <p>Winnie Dunn expandiu o trabalho de Ayres criando um modelo de 4 quadrantes que combina <strong>limiar neurológico</strong> (alto/baixo) com <strong>estratégia comportamental</strong> (passiva/ativa):</p>
+
+                <table>
+                    <thead>
+                        <tr><th></th><th>Estratégia passiva</th><th>Estratégia ativa</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Limiar alto</strong> (precisa de mais estímulo)</td><td><strong>Baixo registro:</strong> Não percebe estímulos, parece distraído, não responde quando chamam</td><td><strong>Busca sensorial:</strong> Procura estímulos intensos, toca tudo, pula, gira, faz barulhos</td></tr>
+                        <tr><td><strong>Limiar baixo</strong> (reage com pouco estímulo)</td><td><strong>Sensibilidade sensorial:</strong> Percebe tudo, distraído por estímulos, desconfortável mas não age</td><td><strong>Evitação sensorial:</strong> Foge de estímulos, cobre ouvidos, recusa comidas, evita multidões</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight highlight-blue">
+                    <strong>📊 Evidência científica:</strong> Uma meta-análise de Schaaf & Lane (2015), publicada no <em>Journal of Autism and Developmental Disorders</em>, revisou 5 ensaios clínicos randomizados e concluiu que a <strong>Terapia de Integração Sensorial de Ayres (ASI)</strong> apresenta evidência de eficácia para melhorar comportamentos funcionais em crianças autistas, com tamanhos de efeito moderados a grandes.
+                </div>
+            </div>
+
+            <!-- CARD 4.7: Estratégias práticas -->
+            <div class="card">
+                <h3><span class="icon">🛠️</span> 4.7 — Estratégias práticas: a "dieta sensorial" e adaptações ambientais</h3>
+                <p>O conceito de <strong>"dieta sensorial"</strong>, criado por Patricia Wilbarger, propõe que — assim como precisamos de uma dieta alimentar equilibrada — cada pessoa precisa de uma "dose" adequada de estímulos sensoriais ao longo do dia para funcionar bem.</p>
+
+                <h4 style="margin-top: 1.5rem;">Estratégias por sistema sensorial:</h4>
+                <table>
+                    <thead>
+                        <tr><th>Sistema</th><th>Para hipersensibilidade (reduzir)</th><th>Para hipossensibilidade (aumentar)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Auditivo</strong></td><td>Protetores auriculares, música calma, reduzir ruído de fundo</td><td>Música rítmica, instrumentos de percussão, brinquedos sonoros</td></tr>
+                        <tr><td><strong>Visual</strong></td><td>Iluminação natural, eliminar luzes fluorescentes, cores suaves</td><td>Brinquedos brilhantes, lanternas, tubos de bolhas iluminados</td></tr>
+                        <tr><td><strong>Tátil</strong></td><td>Roupas sem etiquetas, tecidos suaves, avisar antes de tocar</td><td>Massinha, areia cinética, brincadeiras com água e texturas</td></tr>
+                        <tr><td><strong>Proprioceptivo</strong></td><td>Movimentos lentos e suaves, alongamento leve</td><td>Colete de peso, abraços firmes, carregar objetos pesados, trampolim</td></tr>
+                        <tr><td><strong>Vestibular</strong></td><td>Movimentos lentos e previsíveis, base firme</td><td>Balanço, rede, giros controlados, bola de pilates</td></tr>
+                        <tr><td><strong>Interoceptivo</strong></td><td>Rotinas previsíveis para necessidades básicas</td><td>Programas de consciência corporal, "Body Check" regulares</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-top: 1.5rem;">Adaptações ambientais para o espaço de trabalho:</h4>
+                <ul>
+                    <li><strong>Canto sensorial:</strong> Área calma com iluminação suave, almofadas, cobertores pesados e materiais táteis</li>
+                    <li><strong>Organização visual:</strong> Ambientes sem excesso de estímulos nas paredes, rotinas visuais claras</li>
+                    <li><strong>Ferramentas regulatórias:</strong> Fidgets, mastigadores seguros, bandas elásticas na cadeira, assentos dinâmicos</li>
+                    <li><strong>Pausas sensoriais programadas:</strong> Intervalos regulares para atividades proprioceptivas (pular, empurrar parede, carregar livros)</li>
+                    <li><strong>Protocolo de transição:</strong> Avisar com antecedência sobre mudanças, usar timers visuais, oferecer objetos de transição</li>
+                </ul>
+
+                <div class="highlight highlight-green">
+                    <strong>🌟 Para sua carreira na Espanha:</strong> A profissão de <strong>Terapeuta Ocupacional</strong> com especialização em integração sensorial está em alta demanda na Espanha. Mesmo como educadora ou cuidadora especializada, conhecer estas estratégias te diferencia enormemente. Em centros como <strong>AETAPI</strong>, <strong>Fundación Autismo Diario</strong> e associações regionais, profissionais com conhecimento em processamento sensorial são extremamente valorizados.
+                </div>
+            </div>
+
+            <!-- CARD 4.8: Resumo visual -->
+            <div class="card">
+                <h3><span class="icon">📋</span> Resumo: Processamento Sensorial no TEA</h3>
+                <table>
+                    <thead>
+                        <tr><th>Conceito</th><th>Definição</th><th>Implicação prática</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>8 sistemas sensoriais</td><td>Visual, auditivo, tátil, olfativo, gustativo, vestibular, proprioceptivo, interoceptivo</td><td>Avaliar TODOS os sistemas, não só os 5 clássicos</td></tr>
+                        <tr><td>Filtragem talâmica alterada</td><td>O tálamo não filtra estímulos eficientemente</td><td>O ambiente precisa ser adaptado externamente</td></tr>
+                        <tr><td>Hipersensibilidade</td><td>Reação exagerada a estímulos normais</td><td>Reduzir estímulos, criar ambientes previsíveis</td></tr>
+                        <tr><td>Hipossensibilidade</td><td>Sub-resposta a estímulos</td><td>Oferecer estímulos mais intensos e variados</td></tr>
+                        <tr><td>Perfil misto</td><td>95% têm diferenças sensoriais com padrão variável</td><td>Cada criança precisa de um perfil sensorial individual</td></tr>
+                        <tr><td>Sobrecarga → Meltdown/Shutdown</td><td>O acúmulo sensorial excede a capacidade de processamento</td><td>Gestão preventiva, "orçamento sensorial" diário</td></tr>
+                        <tr><td>4 quadrantes de Dunn</td><td>Limiar x Estratégia comportamental</td><td>Identificar o quadrante ajuda a escolher a intervenção</td></tr>
+                        <tr><td>Dieta sensorial</td><td>Programa personalizado de estímulos ao longo do dia</td><td>Rotina de atividades sensoriais planificadas</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Fontes Tema 4 -->
+            <div class="card" style="background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);">
+                <h3><span class="icon">📚</span> Fontes Científicas — Tema 4</h3>
+                <div class="source-item"><span class="source-badge">APA</span><div><a href="https://doi.org/10.1176/appi.books.9780890425596" target="_blank" rel="noopener">American Psychiatric Association — DSM-5 (2013)</a><div class="source-desc">Inclusão de diferenças sensoriais como critério diagnóstico do TEA</div></div></div>
+                <div class="source-item"><span class="source-badge">PubMed</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/21889474/" target="_blank" rel="noopener">Marco et al. (2011) — Sensory processing in autism: a review of neurophysiologic findings. Pediatric Research</a><div class="source-desc">Respostas corticais somatossensoriais aumentadas em crianças autistas</div></div></div>
+                <div class="source-item"><span class="source-badge">PubMed</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/19205969/" target="_blank" rel="noopener">Ben-Sasson et al. (2009) — A meta-analysis of sensory modulation symptoms in individuals with ASD. JADD</a><div class="source-desc">Meta-análise: hiporresponsividade como padrão mais distintivo no TEA</div></div></div>
+                <div class="source-item"><span class="source-badge">PubMed</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/17146701/" target="_blank" rel="noopener">Tomchek & Dunn (2007) — Sensory processing in children with and without autism. AJOT</a><div class="source-desc">95% das crianças autistas com diferenças no Sensory Profile</div></div></div>
+                <div class="source-item"><span class="source-badge">PMC</span><div><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4310665/" target="_blank" rel="noopener">Green et al. (2015) — Overreactive brain responses to sensory stimuli in youth with ASD. JACC</a><div class="source-desc">Conectividade tálamo-cortical atípica em crianças autistas</div></div></div>
+                <div class="source-item"><span class="source-badge">PubMed</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/25065449/" target="_blank" rel="noopener">Stevenson et al. (2014) — Multisensory temporal integration in autism spectrum disorders. Journal of Neuroscience</a><div class="source-desc">Janela de integração temporal mais ampla no TEA</div></div></div>
+                <div class="source-item"><span class="source-badge">PubMed</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/16418014/" target="_blank" rel="noopener">Baranek et al. (2006) — Sensory Experiences Questionnaire: autism vs. developmental delays. JADD</a><div class="source-desc">Padrões sensoriais distintos entre TEA e outros atrasos</div></div></div>
+                <div class="source-item"><span class="source-badge">PubMed</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/25160710/" target="_blank" rel="noopener">Quattrocki & Friston (2014) — Autism, oxytocin and interoception. Neuroscience & Biobehavioral Reviews</a><div class="source-desc">Dificuldades interoceptivas como base de características do TEA</div></div></div>
+                <div class="source-item"><span class="source-badge">PubMed</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/25737021/" target="_blank" rel="noopener">Schaaf & Lane (2015) — Toward a best-practice protocol for ASI. JADD</a><div class="source-desc">Meta-análise: eficácia da Terapia de Integração Sensorial de Ayres</div></div></div>
+                <div class="source-item"><span class="source-badge">PubMed</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/16932617/" target="_blank" rel="noopener">Dunn, W. (2007) — Supporting children to participate successfully. OT Practice</a><div class="source-desc">Modelo de 4 quadrantes sensoriais de Dunn</div></div></div>
+                <div class="source-item"><span class="source-badge">PubMed</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/17636115/" target="_blank" rel="noopener">McEwen, B.S. (2008) — Central effects of stress hormones in health and disease. European J Pharmacology</a><div class="source-desc">Conceito de carga alostática e acúmulo de estresse</div></div></div>
             </div>
 
         </div>

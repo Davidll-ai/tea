@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEA — Guia de Estudo</title>
+    <title>TEA — Guia Completo</title>
     <style>
         :root {
-            --primary: #2B6CB0;
-            --primary-light: #EBF4FF;
-            --primary-dark: #1A4971;
-            --accent: #E53E3E;
-            --bg: #F7FAFC;
+            --primary: #2563EB;
+            --primary-dark: #1E3A5F;
+            --primary-light: #DBEAFE;
+            --accent: #DC2626;
+            --bg: #F8FAFC;
             --card: #FFFFFF;
-            --text: #2D3748;
-            --text-light: #718096;
+            --text: #1E293B;
+            --text-light: #64748B;
             --border: #E2E8F0;
-            --success: #38A169;
-            --warning: #D69E2E;
-            --info: #3182CE;
-            --sidebar-w: 280px;
+            --success: #059669;
+            --warning: #D97706;
+            --info: #2563EB;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,257 +29,178 @@
             line-height: 1.7;
         }
 
-        /* ===== SIDEBAR ===== */
-        .sidebar {
+        html { scroll-behavior: smooth; }
+
+        /* ===== TOP NAVBAR ===== */
+        .topbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: var(--sidebar-w);
-            height: 100vh;
-            background: var(--primary-dark);
-            color: white;
-            overflow-y: auto;
-            z-index: 200;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-header {
-            padding: 1.5rem 1.2rem;
-            background: rgba(0,0,0,0.15);
-        }
-
-        .sidebar-header h1 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .sidebar-header p {
-            font-size: 0.78rem;
-            opacity: 0.7;
-            margin-top: 0.3rem;
-        }
-
-        .sidebar-nav {
-            flex: 1;
-            padding: 0.5rem 0;
-        }
-
-        .sidebar-section {
-            padding: 0.8rem 1.2rem 0.4rem;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.4);
-            font-weight: 700;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            padding: 0.65rem 1.2rem;
-            text-decoration: none;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.88rem;
-            transition: all 0.2s;
-            border-left: 3px solid transparent;
-            cursor: pointer;
-        }
-
-        .nav-item:hover {
-            background: rgba(255,255,255,0.08);
-            color: white;
-        }
-
-        .nav-item.active {
-            background: rgba(255,255,255,0.12);
-            color: white;
-            border-left-color: #63B3ED;
-        }
-
-        .nav-item.disabled {
-            opacity: 0.35;
-            cursor: default;
-            pointer-events: none;
-        }
-
-        .nav-num {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: rgba(255,255,255,0.1);
-            flex-shrink: 0;
-        }
-
-        .nav-item.active .nav-num {
-            background: #63B3ED;
-            color: var(--primary-dark);
-        }
-
-        .nav-item.done .nav-num {
-            background: var(--success);
-            color: white;
-        }
-
-        .nav-label { flex: 1; }
-
-        .nav-badge {
-            font-size: 0.6rem;
-            background: rgba(255,255,255,0.15);
-            padding: 0.15rem 0.45rem;
-            border-radius: 8px;
-            white-space: nowrap;
-        }
-
-        .sidebar-footer {
-            padding: 1rem 1.2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.35);
-            text-align: center;
-        }
-
-        /* ===== MOBILE HAMBURGER ===== */
-        .mobile-topbar {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 56px;
             background: var(--primary-dark);
             color: white;
-            z-index: 300;
-            align-items: center;
-            padding: 0 1rem;
-            gap: 0.8rem;
-        }
-
-        .hamburger {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.3rem;
-            line-height: 1;
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            padding: 0 1.5rem;
+            z-index: 300;
+            gap: 1rem;
+        }
+
+        .topbar-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .topbar-back {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 0.4rem;
             transition: background 0.2s;
         }
 
-        .hamburger:hover { background: rgba(255,255,255,0.1); }
+        .topbar-back:hover { background: rgba(255,255,255,0.25); }
+        .topbar-back.visible { display: inline-flex; }
 
-        .mobile-topbar h1 {
-            font-size: 1rem;
-            font-weight: 600;
+        .topbar-spacer { flex: 1; }
+
+        /* ===== LANDING PAGE ===== */
+        .landing { padding-top: 56px; }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 3.5rem 2rem 3rem;
+            text-align: center;
         }
 
-        .overlay {
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero .hero-sub {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        .landing-grid {
+            max-width: 1100px;
+            margin: -2rem auto 2rem;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+        }
+
+        .landing-card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .landing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .landing-card .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .landing-card h3 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .landing-card p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            flex: 1;
+        }
+
+        .card-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            margin-top: 0.8rem;
+            align-self: flex-start;
+        }
+
+        .badge-ready { background: #D1FAE5; color: #065F46; }
+        .badge-new { background: #DBEAFE; color: #1E40AF; }
+        .badge-soon { background: #FEF3C7; color: #92400E; }
+
+        .landing-footer {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ===== SECTION VIEWS ===== */
+        .section-view {
             display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 150;
-        }
-
-        .overlay.show { display: block; }
-
-        /* ===== MAIN CONTENT ===== */
-        .content {
-            margin-left: var(--sidebar-w);
+            padding-top: 56px;
             min-height: 100vh;
         }
 
-        .content-inner {
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 2rem 2rem 3rem;
-        }
+        .section-view.active { display: block; }
 
-        /* Topic header */
-        .topic-header {
-            margin-bottom: 2.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .topic-tag {
-            display: inline-block;
-            background: var(--primary);
+        .section-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
             color: white;
-            font-size: 0.75rem;
+            padding: 2rem 2rem 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.6rem;
             font-weight: 700;
-            padding: 0.25rem 0.8rem;
-            border-radius: 20px;
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
-        .topic-header h2 {
-            font-size: 1.8rem;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
+        .section-header p {
+            opacity: 0.8;
+            margin-top: 0.3rem;
         }
 
-        .topic-header p {
-            color: var(--text-light);
-            font-size: 1rem;
+        .section-body {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
         }
 
-        /* In-page navigation (section anchors) */
-        .page-sections {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .page-sections h4 {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-light);
-            margin-bottom: 0.8rem;
-        }
-
-        .page-sections ul {
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.4rem;
-        }
-
-        .page-sections a {
-            display: block;
-            padding: 0.45rem 0.8rem;
-            font-size: 0.88rem;
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background 0.15s;
-        }
-
-        .page-sections a:hover {
-            background: var(--primary-light);
-        }
-
-        /* Cards */
+        /* ===== CONTENT CARDS ===== */
         .card {
             background: var(--card);
             border-radius: 12px;
@@ -303,25 +223,13 @@
         }
 
         .card h3 .icon { font-size: 1.4rem; }
-
-        .card h4 {
-            font-size: 1.05rem;
-            color: var(--primary);
-            margin: 1.2rem 0 0.6rem 0;
-        }
-
+        .card h4 { font-size: 1.05rem; color: var(--primary); margin: 1.2rem 0 0.6rem 0; }
         .card p { margin-bottom: 0.8rem; }
-
         .card ul, .card ol { margin: 0.5rem 0 1rem 1.5rem; }
         .card li { margin-bottom: 0.4rem; }
 
         /* Highlight boxes */
-        .highlight {
-            border-radius: 8px;
-            padding: 1.2rem 1.5rem;
-            margin: 1rem 0;
-        }
-
+        .highlight { border-radius: 8px; padding: 1.2rem 1.5rem; margin: 1rem 0; }
         .highlight-blue { background: #EBF8FF; border-left: 4px solid var(--info); }
         .highlight-green { background: #F0FFF4; border-left: 4px solid var(--success); }
         .highlight-yellow { background: #FFFFF0; border-left: 4px solid var(--warning); }
@@ -329,1103 +237,1261 @@
         .highlight strong { display: block; margin-bottom: 0.3rem; }
 
         /* Tables */
-        .table-wrapper {
-            overflow-x: auto;
-            margin: 1rem 0;
-            border-radius: 8px;
-        }
+        .table-wrapper { overflow-x: auto; margin: 1rem 0; border-radius: 8px; }
 
-        .levels-table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 500px;
-        }
-
-        .levels-table th, .levels-table td {
-            padding: 0.8rem 1rem;
-            text-align: left;
-            border: 1px solid var(--border);
-        }
-
-        .levels-table th {
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
-        }
-
+        .levels-table { width: 100%; border-collapse: collapse; min-width: 400px; }
+        .levels-table th, .levels-table td { padding: 0.8rem 1rem; text-align: left; border: 1px solid var(--border); }
+        .levels-table th { background: var(--primary); color: white; font-weight: 600; }
         .levels-table tr:nth-child(even) { background: var(--primary-light); }
 
-        .level-badge {
-            display: inline-block;
-            padding: 0.2rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: white;
-        }
-
+        .level-badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: white; }
         .level-1 { background: var(--success); }
         .level-2 { background: var(--warning); }
         .level-3 { background: var(--accent); }
 
         /* Comparison grid */
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .comparison-box {
-            background: var(--primary-light);
-            border-radius: 8px;
-            padding: 1.2rem;
-        }
-
-        .comparison-box h5 {
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .comparison-box { background: var(--primary-light); border-radius: 8px; padding: 1.2rem; }
+        .comparison-box h5 { color: var(--primary-dark); margin-bottom: 0.5rem; font-size: 0.95rem; }
         .comparison-box p { font-size: 0.9rem; margin: 0; }
 
         /* Sources */
-        .sources {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-top: 2.5rem;
-            border: 1px solid var(--border);
-            scroll-margin-top: 80px;
-        }
-
-        .sources h3 {
-            font-size: 1.2rem;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--primary-light);
-        }
-
-        .source-item {
-            display: flex;
-            gap: 0.75rem;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border);
-            align-items: flex-start;
-        }
-
+        .sources { background: var(--card); border-radius: 12px; padding: 2rem; margin-top: 2rem; border: 1px solid var(--border); }
+        .sources h3, .sources h4 { font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary-light); }
+        .source-item { display: flex; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
         .source-item:last-child { border-bottom: none; }
-
-        .source-badge {
-            flex-shrink: 0;
-            background: var(--primary);
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            text-transform: uppercase;
-            margin-top: 0.15rem;
-        }
-
-        .source-item a {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.92rem;
-            line-height: 1.5;
-        }
-
+        .source-badge { flex-shrink: 0; background: var(--primary); color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; text-transform: uppercase; margin-top: 0.15rem; }
+        .source-item a { color: var(--primary); text-decoration: none; font-size: 0.9rem; line-height: 1.5; }
         .source-item a:hover { text-decoration: underline; }
+        .source-desc { color: var(--text-light); font-size: 0.8rem; margin-top: 0.1rem; }
 
-        .source-desc {
-            color: var(--text-light);
-            font-size: 0.82rem;
-            margin-top: 0.15rem;
+        /* Page sections nav */
+        .page-sections { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .page-sections h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-light); margin-bottom: 0.8rem; }
+        .page-sections ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+        .page-sections a { display: block; padding: 0.45rem 0.8rem; font-size: 0.88rem; color: var(--primary); text-decoration: none; border-radius: 6px; transition: background 0.15s; }
+        .page-sections a:hover { background: var(--primary-light); }
+
+        /* Sub-section nav within a section view */
+        .sub-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+        .sub-nav a {
+            padding: 0.5rem 1rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .sub-nav a:hover, .sub-nav a.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* LinkedIn template */
+        .linkedin-template {
+            background: #F0F4F8;
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
         }
 
-        /* Back to top */
-        .back-top {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            width: 44px;
-            height: 44px;
+        /* Glossary table */
+        .glossary-table { width: 100%; border-collapse: collapse; }
+        .glossary-table th { background: var(--primary-dark); color: white; padding: 0.7rem 1rem; text-align: left; }
+        .glossary-table td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); }
+        .glossary-table tr:nth-child(even) { background: #F8FAFC; }
+        .glossary-cat { background: var(--primary-light) !important; font-weight: 700; color: var(--primary-dark); }
+
+        /* CV template */
+        .cv-block {
+            background: white;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 1.2rem 1.5rem;
+            margin: 0.8rem 0;
+        }
+        .cv-block h5 { color: var(--primary); margin-bottom: 0.5rem; font-size: 0.95rem; }
+
+        /* Timeline / roadmap */
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .timeline-marker {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: var(--primary);
             color: white;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            display: none;
+            display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .timeline-content {
+            flex: 1;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+        }
+        .timeline-content h5 { color: var(--primary-dark); margin-bottom: 0.3rem; }
+        .timeline-content p { font-size: 0.9rem; color: var(--text-light); margin: 0; }
+
+        /* Back to top */
+        .back-top {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--primary); color: white; border: none;
+            font-size: 1.2rem; cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: none; align-items: center; justify-content: center;
             z-index: 50;
-            transition: opacity 0.2s;
         }
-
         .back-top.show { display: flex; }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            color: var(--text-light);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border);
-        }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-            .mobile-topbar {
-                display: flex;
-            }
-
-            .content {
-                margin-left: 0;
-                padding-top: 56px;
-            }
-
-            .content-inner {
-                padding: 1.5rem 1rem 3rem;
-            }
-
-            .topic-header h2 { font-size: 1.4rem; }
+            .landing-grid { grid-template-columns: repeat(2, 1fr); margin-top: -1.5rem; }
+            .hero { padding: 2.5rem 1.5rem 2rem; }
+            .hero h1 { font-size: 1.7rem; }
+            .section-body { padding: 1.5rem 1rem 3rem; }
             .card { padding: 1.5rem; }
             .comparison-grid { grid-template-columns: 1fr; }
             .page-sections ul { grid-template-columns: 1fr; }
-            .levels-table { font-size: 0.85rem; }
-            .levels-table th, .levels-table td { padding: 0.5rem 0.6rem; }
         }
 
-        @media (max-width: 400px) {
-            .content-inner { padding: 1rem 0.75rem 2rem; }
+        @media (max-width: 550px) {
+            .landing-grid { grid-template-columns: 1fr; padding: 0 1rem; }
+            .hero h1 { font-size: 1.4rem; }
+            .hero p { font-size: 0.95rem; }
             .card { padding: 1.2rem; }
             .card h3 { font-size: 1.1rem; }
+            .topbar { padding: 0 1rem; }
+            .topbar-logo { font-size: 0.95rem; }
+            .section-header { padding: 1.5rem 1rem 1rem; }
+            .section-header h2 { font-size: 1.3rem; }
         }
-
-        /* Scroll behavior */
-        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
 
-    <!-- MOBILE TOP BAR -->
-    <div class="mobile-topbar">
-        <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">&#9776;</button>
-        <h1>TEA — Guia de Estudo</h1>
+    <!-- TOP NAVBAR -->
+    <div class="topbar">
+        <button class="topbar-back" id="btnBack" onclick="showLanding()">&#9664; Início</button>
+        <span class="topbar-logo" onclick="showLanding()">TEA — Guia Completo</span>
+        <div class="topbar-spacer"></div>
     </div>
 
-    <!-- OVERLAY -->
-    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h1>Transtorno do Espectro Autista</h1>
-            <p>Guia de Estudo Científico</p>
+    <!-- ============================================ -->
+    <!-- LANDING PAGE -->
+    <!-- ============================================ -->
+    <div class="landing" id="landing">
+        <div class="hero">
+            <h1>Guia TEA — Espanha</h1>
+            <p>Seu guia completo para estudar e trabalhar com autismo infantil na Espanha</p>
+            <div class="hero-sub">Preparado especialmente para Dayane</div>
         </div>
 
-        <nav class="sidebar-nav">
-            <div class="sidebar-section">Carreira na Espanha</div>
-
-            <a href="#sec-convalidacao" class="nav-item active done" onclick="closeSidebar()">
-                <span class="nav-num">&#9733;</span>
-                <span class="nav-label">Convalidação de Estudos</span>
-            </a>
-            <a href="#sec-oportunidades" class="nav-item active done" onclick="closeSidebar()">
-                <span class="nav-num">&#9733;</span>
-                <span class="nav-label">Oportunidades Profissionais</span>
-            </a>
-            <a href="#sec-motivacao" class="nav-item active done" onclick="closeSidebar()">
-                <span class="nav-num">&#10084;</span>
-                <span class="nav-label">Motivação</span>
+        <div class="landing-grid">
+            <a class="landing-card" onclick="showSection('sec-neurociencia')">
+                <div class="card-icon">🧠</div>
+                <h3>Neurociência do TEA</h3>
+                <p>Definição, diagnóstico, desenvolvimento cerebral, conectividade neuronal e mais 11 temas de estudo</p>
+                <span class="card-badge badge-ready">1 tema pronto</span>
             </a>
 
-            <div class="sidebar-section">Neurociência</div>
-
-            <a href="#tema1" class="nav-item active done" onclick="closeSidebar()">
-                <span class="nav-num">1</span>
-                <span class="nav-label">Definição e Diagnóstico</span>
-            </a>
-            <a class="nav-item disabled">
-                <span class="nav-num">2</span>
-                <span class="nav-label">Desenvolvimento Cerebral</span>
-                <span class="nav-badge">em breve</span>
-            </a>
-            <a class="nav-item disabled">
-                <span class="nav-num">3</span>
-                <span class="nav-label">Conectividade Neuronal</span>
-                <span class="nav-badge">em breve</span>
-            </a>
-            <a class="nav-item disabled">
-                <span class="nav-num">4</span>
-                <span class="nav-label">Processamento Sensorial</span>
-                <span class="nav-badge">em breve</span>
-            </a>
-            <a class="nav-item disabled">
-                <span class="nav-num">5</span>
-                <span class="nav-label">Neurônios Espelho</span>
-                <span class="nav-badge">em breve</span>
-            </a>
-            <a class="nav-item disabled">
-                <span class="nav-num">6</span>
-                <span class="nav-label">Estruturas Cerebrais</span>
-                <span class="nav-badge">em breve</span>
-            </a>
-            <a class="nav-item disabled">
-                <span class="nav-num">7</span>
-                <span class="nav-label">Genética do Autismo</span>
-                <span class="nav-badge">em breve</span>
+            <a class="landing-card" onclick="showSection('sec-metodos')">
+                <div class="card-icon">📚</div>
+                <h3>Métodos Educativos</h3>
+                <p>TEACCH, ABA e Modelo Denver — os três principais métodos de intervenção</p>
+                <span class="card-badge badge-soon">em breve</span>
             </a>
 
-            <div class="sidebar-section">Temas Especiais</div>
-
-            <a class="nav-item disabled">
-                <span class="nav-num">8</span>
-                <span class="nav-label">Autismo em Meninas</span>
-                <span class="nav-badge">em breve</span>
-            </a>
-            <a class="nav-item disabled">
-                <span class="nav-num">9</span>
-                <span class="nav-label">Potenciais e Habilidades</span>
-                <span class="nav-badge">em breve</span>
-            </a>
-            <a class="nav-item disabled">
-                <span class="nav-num">10</span>
-                <span class="nav-label">Perspectivas Futuras</span>
-                <span class="nav-badge">em breve</span>
+            <a class="landing-card" onclick="showSection('sec-carreira')">
+                <div class="card-icon">🇪🇸</div>
+                <h3>Carreira na Espanha</h3>
+                <p>Convalidação de estudos, oportunidades profissionais com crianças e motivação</p>
+                <span class="card-badge badge-ready">pronto</span>
             </a>
 
-            <div class="sidebar-section">Métodos Educativos</div>
-
-            <a class="nav-item disabled">
-                <span class="nav-num">11</span>
-                <span class="nav-label">TEACCH, ABA e Denver</span>
-                <span class="nav-badge">em breve</span>
+            <a class="landing-card" onclick="showSection('sec-linkedin')">
+                <div class="card-icon">💼</div>
+                <h3>Perfil LinkedIn</h3>
+                <p>Como criar um perfil profissional atrativo destacando a sua especialização em TEA infantil</p>
+                <span class="card-badge badge-new">novo</span>
             </a>
 
-        </nav>
+            <a class="landing-card" onclick="showSection('sec-glossario')">
+                <div class="card-icon">🗣️</div>
+                <h3>Glossário PT — ES</h3>
+                <p>Terminologia essencial sobre autismo em português e espanhol para o dia a dia profissional</p>
+                <span class="card-badge badge-new">novo</span>
+            </a>
 
-        <div class="sidebar-footer">
-            Baseado em fontes científicas oficiais<br>Material educativo — 2026
+            <a class="landing-card" onclick="showSection('sec-curriculo')">
+                <div class="card-icon">📝</div>
+                <h3>Currículo Modelo</h3>
+                <p>Modelo de CV adaptado ao formato espanhol para a área de TEA infantil</p>
+                <span class="card-badge badge-new">novo</span>
+            </a>
+
+            <a class="landing-card" onclick="showSection('sec-entrevistas')">
+                <div class="card-icon">🎯</div>
+                <h3>Preparação para Entrevistas</h3>
+                <p>Perguntas frequentes e como apresentar a sua experiência brasileira na Espanha</p>
+                <span class="card-badge badge-new">novo</span>
+            </a>
+
+            <a class="landing-card" onclick="showSection('sec-roteiro')">
+                <div class="card-icon">📅</div>
+                <h3>Roteiro de Estudos</h3>
+                <p>Plano de estudo semanal para dominar todos os temas do guia</p>
+                <span class="card-badge badge-new">novo</span>
+            </a>
+
+            <a class="landing-card" onclick="showSection('sec-recursos')">
+                <div class="card-icon">🎓</div>
+                <h3>Recursos Gratuitos</h3>
+                <p>Cursos online, vídeos, podcasts e materiais gratuitos sobre TEA em espanhol e português</p>
+                <span class="card-badge badge-new">novo</span>
+            </a>
         </div>
-    </aside>
 
-    <!-- MAIN CONTENT -->
-    <div class="content">
-        <div class="content-inner">
+        <div class="landing-footer">
+            <p>Material de estudo baseado em fontes científicas oficiais — 2026</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION: NEUROCIÊNCIA DO TEA -->
+    <!-- ============================================ -->
+    <div class="section-view" id="sec-neurociencia">
+        <div class="section-header">
+            <h2>🧠 Neurociência do TEA</h2>
+            <p>11 temas de estudo sobre o Transtorno do Espectro Autista</p>
+        </div>
+        <div class="section-body">
+
+            <div class="sub-nav">
+                <a href="#tema1" class="active" onclick="event.preventDefault()">1. Definição e Diagnóstico</a>
+                <a class="disabled" style="opacity:0.4;pointer-events:none;">2. Desenv. Cerebral — em breve</a>
+                <a class="disabled" style="opacity:0.4;pointer-events:none;">3. Conectividade — em breve</a>
+                <a class="disabled" style="opacity:0.4;pointer-events:none;">4. Proc. Sensorial — em breve</a>
+                <a class="disabled" style="opacity:0.4;pointer-events:none;">5. Neurônios Espelho — em breve</a>
+                <a class="disabled" style="opacity:0.4;pointer-events:none;">6. Estruturas Cerebrais — em breve</a>
+                <a class="disabled" style="opacity:0.4;pointer-events:none;">7. Genética — em breve</a>
+                <a class="disabled" style="opacity:0.4;pointer-events:none;">8. Autismo em Meninas — em breve</a>
+                <a class="disabled" style="opacity:0.4;pointer-events:none;">9. Potenciais — em breve</a>
+                <a class="disabled" style="opacity:0.4;pointer-events:none;">10. Perspectivas Futuras — em breve</a>
+            </div>
 
             <!-- TEMA 1 -->
-            <section id="tema1">
+            <div class="card" id="tema1">
+                <h3><span class="icon">🧠</span> O que é o TEA?</h3>
+                <p>O <strong>Transtorno do Espectro Autista (TEA)</strong> é um distúrbio do neurodesenvolvimento caracterizado por desenvolvimento atípico, manifestações comportamentais, déficits na comunicação e na interação social, e padrões de comportamentos repetitivos e estereotipados, podendo apresentar um repertório restrito de interesses e atividades.</p>
 
-                <div class="topic-header">
-                    <span class="topic-tag">Tema 1 de 11</span>
-                    <h2>Definição e Diagnóstico do TEA</h2>
-                    <p>O que é o Transtorno do Espectro Autista e como é diagnosticado segundo o DSM-5, a CID-11 e os principais órgãos de saúde</p>
+                <div class="highlight highlight-blue">
+                    <strong>Por que "espectro"?</strong>
+                    O termo "espectro" reflete a ampla variação na forma como o autismo se manifesta. Cada pessoa com TEA apresenta um conjunto único de características, que pode variar desde quadros leves — nos quais o indivíduo possui total independência — até situações que requerem apoio substancial nas atividades do dia a dia.
                 </div>
 
-                <!-- In-page nav -->
-                <div class="page-sections">
-                    <h4>Neste tema</h4>
-                    <ul>
-                        <li><a href="#sec-oque">O que é o TEA?</a></li>
-                        <li><a href="#sec-dsm5">Critérios DSM-5</a></li>
-                        <li><a href="#sec-niveis">Níveis de Gravidade</a></li>
-                        <li><a href="#sec-cid11">CID-11 (OMS)</a></li>
-                        <li><a href="#sec-pratica">Diagnóstico na Prática</a></li>
-                        <li><a href="#sec-brasil">TEA no Brasil</a></li>
-                        <li><a href="#sec-espanha">TEA na Espanha</a></li>
-                        <li><a href="#sec-comparacao">DSM-5 vs. CID-11</a></li>
-                        <li><a href="#fontes">Fontes e Referências</a></li>
+                <p>Segundo o <strong>CDC</strong> (Centros de Controle e Prevenção de Doenças dos EUA), o TEA é uma "deficiência do desenvolvimento que pode causar desafios significativos nas áreas social, de comunicação e comportamental". O TEA não é uma doença — é uma condição neurológica que acompanha a pessoa ao longo de toda a vida.</p>
+
+                <h4>Evolução do conceito</h4>
+                <p>O <strong>DSM-5</strong> (Manual Diagnóstico e Estatístico de Transtornos Mentais, 5ª edição), publicado em 2013, unificou três diagnósticos anteriores do DSM-IV em uma única categoria:</p>
+                <ul>
+                    <li><strong>Transtorno Autista</strong> (autismo clássico)</li>
+                    <li><strong>Síndrome de Asperger</strong></li>
+                    <li><strong>Transtorno Global do Desenvolvimento Sem Outra Especificação (TGD-SOE)</strong></li>
+                </ul>
+                <p>Todos passaram a ser classificados como <strong>Transtorno do Espectro Autista</strong>, reconhecendo que se trata de um espectro contínuo com diferentes níveis de gravidade.</p>
+            </div>
+
+            <div class="card" id="sec-dsm5">
+                <h3><span class="icon">📋</span> Critérios Diagnósticos — DSM-5</h3>
+                <p>O DSM-5 estabelece cinco critérios (A a E) que devem ser atendidos para o diagnóstico do TEA:</p>
+
+                <h4>Critério A — Déficits na comunicação e interação social</h4>
+                <p>Déficits persistentes na comunicação social e na interação social em múltiplos contextos, manifestados por <strong>todos os três</strong> itens a seguir:</p>
+                <ol>
+                    <li><strong>Reciprocidade socioemocional</strong> — Dificuldades na abordagem social, na conversação recíproca e no compartilhamento de interesses, emoções ou afetos.</li>
+                    <li><strong>Comunicação não verbal</strong> — Déficits nos comportamentos comunicativos não verbais, como contato visual, expressões faciais, linguagem corporal e uso de gestos.</li>
+                    <li><strong>Relacionamentos</strong> — Dificuldades em desenvolver, manter e compreender relacionamentos.</li>
+                </ol>
+
+                <h4>Critério B — Padrões restritos e repetitivos</h4>
+                <p>Padrões restritos e repetitivos de comportamento, interesses ou atividades, manifestados por <strong>pelo menos dois</strong> dos seguintes:</p>
+                <ol>
+                    <li><strong>Movimentos, uso de objetos ou fala estereotipados ou repetitivos</strong></li>
+                    <li><strong>Insistência em rotinas e resistência a mudanças</strong></li>
+                    <li><strong>Interesses restritos e fixos</strong></li>
+                    <li><strong>Hiper ou hiporreatividade sensorial</strong></li>
+                </ol>
+
+                <h4>Critério C — Início precoce</h4>
+                <p>Os sintomas devem estar presentes no <strong>início do período de desenvolvimento</strong>, embora possam não se manifestar plenamente até que as demandas sociais excedam as capacidades limitadas.</p>
+
+                <h4>Critério D — Prejuízo funcional</h4>
+                <p>Os sintomas causam <strong>prejuízo clinicamente significativo</strong> no funcionamento social, profissional ou em outras áreas importantes da vida.</p>
+
+                <h4>Critério E — Diagnóstico diferencial</h4>
+                <p>As perturbações não são melhor explicadas por <strong>deficiência intelectual</strong> ou por <strong>atraso global do desenvolvimento</strong>.</p>
+
+                <div class="highlight highlight-yellow">
+                    <strong>Especificadores do DSM-5</strong>
+                    O clínico deve indicar: presença ou ausência de comprometimento intelectual, comprometimento de linguagem, condição médica ou genética associada, outro transtorno do neurodesenvolvimento ou comportamental, e catatonia.
+                </div>
+            </div>
+
+            <div class="card" id="sec-niveis">
+                <h3><span class="icon">📊</span> Níveis de Gravidade (DSM-5)</h3>
+                <p>O DSM-5 estabeleceu três níveis de gravidade baseados no grau de apoio necessário:</p>
+                <div class="table-wrapper">
+                    <table class="levels-table">
+                        <thead><tr><th>Nível</th><th>Comunicação Social</th><th>Comportamentos Restritos/Repetitivos</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="level-badge level-1">Nível 1</span><br>Necessita apoio</td>
+                                <td>Sem apoio, os déficits na comunicação social causam prejuízos perceptíveis. Dificuldade em iniciar interações sociais.</td>
+                                <td>Inflexibilidade de comportamento causa interferência significativa. Dificuldade em trocar de atividades.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="level-badge level-2">Nível 2</span><br>Apoio substancial</td>
+                                <td>Déficits marcantes nas habilidades de comunicação verbal e não verbal. Prejuízos sociais aparentes mesmo com apoio.</td>
+                                <td>Comportamentos restritos/repetitivos aparecem com frequência óbvia ao observador casual.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="level-badge level-3">Nível 3</span><br>Apoio muito substancial</td>
+                                <td>Déficits graves. Funcionamento muito limitado, resposta mínima a aberturas sociais.</td>
+                                <td>Inflexibilidade extrema. Comportamentos interferem marcadamente em todas as esferas.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card" id="sec-cid11">
+                <h3><span class="icon">🌐</span> Classificação na CID-11 (OMS)</h3>
+                <p>A <strong>CID-11</strong> da Organização Mundial da Saúde classifica o TEA sob o código <strong>6A02</strong> (em vigor desde janeiro de 2022):</p>
+                <ol>
+                    <li><strong>Déficits na comunicação social</strong></li>
+                    <li><strong>Padrões restritos e repetitivos</strong></li>
+                    <li><strong>Prejuízo funcional</strong></li>
+                </ol>
+                <div class="highlight highlight-green">
+                    <strong>Novidade da CID-11</strong>
+                    Incluiu as <strong>respostas atípicas a estímulos sensoriais</strong> como característica central do diagnóstico e oferece <strong>oito subcategorias</strong> para diferenciar indivíduos com base no nível intelectual e nas habilidades de linguagem.
+                </div>
+            </div>
+
+            <div class="card" id="sec-pratica">
+                <h3><span class="icon">🔍</span> Como é Feito o Diagnóstico na Prática</h3>
+                <p>O diagnóstico do TEA é <strong>essencialmente clínico</strong>. O processo envolve:</p>
+                <ul>
+                    <li><strong>Observação direta</strong> do comportamento da criança</li>
+                    <li><strong>Entrevistas</strong> com pais e cuidadores</li>
+                    <li><strong>Aplicação de instrumentos padronizados</strong> (ex: M-CHAT-R, a partir dos 16 meses)</li>
+                    <li><strong>Avaliação multidisciplinar</strong> (neuropediatra, psicólogo, fonoaudiólogo, etc.)</li>
+                </ul>
+                <div class="highlight highlight-red">
+                    <strong>Detecção precoce é fundamental</strong>
+                    O diagnóstico geralmente é estabelecido entre os <strong>2 e 3 anos de idade</strong>. A intervenção precoce deve começar <strong>mesmo antes da confirmação diagnóstica</strong>.
+                </div>
+            </div>
+
+            <div class="card" id="sec-brasil">
+                <h3><span class="icon">🇧🇷</span> TEA no Brasil</h3>
+                <p>O SUS oferece: <strong>263 CER</strong>, <strong>282 CAPSi</strong> e <strong>2.795 CAPS</strong>. Em 2021 foram <strong>9,6 milhões de atendimentos ambulatoriais</strong> para pessoas com autismo.</p>
+                <div class="highlight highlight-blue">
+                    <strong>Lei Berenice Piana (Lei 12.764/2012)</strong>
+                    Equipara pessoas com TEA a pessoas com deficiência para todos os efeitos legais, garantindo acesso a educação, saúde e proteção social. A SBP recomenda triagem para TEA entre 18 e 24 meses.
+                </div>
+            </div>
+
+            <div class="card" id="sec-espanha">
+                <h3><span class="icon">🇪🇸</span> TEA na Espanha</h3>
+                <p>Aproximadamente <strong>127.612 pessoas com TEA certificadas</strong> (IMSERSO, 2021). Em 2024 foi apresentado o primeiro <strong>Plano de Ação para o TEA</strong> com <strong>39,6 milhões de euros</strong>.</p>
+                <div class="highlight highlight-green">
+                    <strong>Organizações de referência</strong>
+                    <ul style="margin: 0.5rem 0 0 1.2rem;">
+                        <li><strong>Confederación Autismo España</strong> (autismo.org.es)</li>
+                        <li><strong>Centro Español sobre TEA</strong> (centroautismo.es)</li>
+                        <li><strong>AETAPI</strong> (aetapi.org)</li>
+                        <li><strong>FESPAU</strong> (fespau.es)</li>
                     </ul>
                 </div>
-
-                <!-- O que é TEA -->
-                <div class="card" id="sec-oque">
-                    <h3><span class="icon">🧠</span> O que é o TEA?</h3>
-                    <p>
-                        O <strong>Transtorno do Espectro Autista (TEA)</strong> é um distúrbio do neurodesenvolvimento caracterizado por desenvolvimento atípico, manifestações comportamentais, déficits na comunicação e na interação social, e padrões de comportamentos repetitivos e estereotipados, podendo apresentar um repertório restrito de interesses e atividades.
-                    </p>
-
-                    <div class="highlight highlight-blue">
-                        <strong>Por que "espectro"?</strong>
-                        O termo "espectro" reflete a ampla variação na forma como o autismo se manifesta. Cada pessoa com TEA apresenta um conjunto único de características, que pode variar desde quadros leves — nos quais o indivíduo possui total independência — até situações que requerem apoio substancial nas atividades do dia a dia.
-                    </div>
-
-                    <p>
-                        Segundo o <strong>CDC</strong> (Centros de Controle e Prevenção de Doenças dos EUA), o TEA é uma "deficiência do desenvolvimento que pode causar desafios significativos nas áreas social, de comunicação e comportamental". O TEA não é uma doença — é uma condição neurológica que acompanha a pessoa ao longo de toda a vida.
-                    </p>
-
-                    <h4>Evolução do conceito</h4>
-                    <p>
-                        O <strong>DSM-5</strong> (Manual Diagnóstico e Estatístico de Transtornos Mentais, 5ª edição), publicado em 2013, unificou três diagnósticos anteriores do DSM-IV em uma única categoria:
-                    </p>
-                    <ul>
-                        <li><strong>Transtorno Autista</strong> (autismo clássico)</li>
-                        <li><strong>Síndrome de Asperger</strong></li>
-                        <li><strong>Transtorno Global do Desenvolvimento Sem Outra Especificação (TGD-SOE)</strong></li>
-                    </ul>
-                    <p>
-                        Todos passaram a ser classificados como <strong>Transtorno do Espectro Autista</strong>, reconhecendo que se trata de um espectro contínuo com diferentes níveis de gravidade.
-                    </p>
+                <div class="highlight highlight-yellow">
+                    <strong>Importante para profissionais brasileiros</strong>
+                    Na Espanha a proteção legal se dá através da legislação de <strong>discapacidad</strong> e <strong>dependencia</strong>. Para atuar profissionalmente, verifique a <strong>homologação do título</strong> junto ao Ministério de Educação espanhol.
                 </div>
+            </div>
 
-                <!-- Critérios Diagnósticos DSM-5 -->
-                <div class="card" id="sec-dsm5">
-                    <h3><span class="icon">📋</span> Critérios Diagnósticos — DSM-5</h3>
-                    <p>
-                        O DSM-5 estabelece cinco critérios (A a E) que devem ser atendidos para o diagnóstico do TEA:
-                    </p>
-
-                    <h4>Critério A — Déficits na comunicação e interação social</h4>
-                    <p>Déficits persistentes na comunicação social e na interação social em múltiplos contextos, manifestados por <strong>todos os três</strong> itens a seguir:</p>
-                    <ol>
-                        <li><strong>Reciprocidade socioemocional</strong> — Dificuldades na abordagem social, na conversação recíproca e no compartilhamento de interesses, emoções ou afetos.</li>
-                        <li><strong>Comunicação não verbal</strong> — Déficits nos comportamentos comunicativos não verbais, como contato visual, expressões faciais, linguagem corporal e uso de gestos.</li>
-                        <li><strong>Relacionamentos</strong> — Dificuldades em desenvolver, manter e compreender relacionamentos, desde ajustar o comportamento a diferentes contextos sociais até fazer amizades e demonstrar interesse pelos outros.</li>
-                    </ol>
-
-                    <h4>Critério B — Padrões restritos e repetitivos</h4>
-                    <p>Padrões restritos e repetitivos de comportamento, interesses ou atividades, manifestados por <strong>pelo menos dois</strong> dos seguintes:</p>
-                    <ol>
-                        <li><strong>Movimentos, uso de objetos ou fala estereotipados ou repetitivos</strong> — como estereotipias motoras simples, alinhar objetos ou ecolalia.</li>
-                        <li><strong>Insistência em rotinas e resistência a mudanças</strong> — adesão inflexível a rotinas, padrões ritualizados de comportamento, com angústia diante de pequenas mudanças.</li>
-                        <li><strong>Interesses restritos e fixos</strong> — intensidade ou foco anormais em interesses altamente específicos.</li>
-                        <li><strong>Hiper ou hiporreatividade sensorial</strong> — reações incomuns a estímulos sensoriais como dor, temperatura, sons, texturas ou luz.</li>
-                    </ol>
-
-                    <h4>Critério C — Início precoce</h4>
-                    <p>Os sintomas devem estar presentes no <strong>início do período de desenvolvimento</strong>, embora possam não se manifestar plenamente até que as demandas sociais excedam as capacidades limitadas.</p>
-
-                    <h4>Critério D — Prejuízo funcional</h4>
-                    <p>Os sintomas causam <strong>prejuízo clinicamente significativo</strong> no funcionamento social, profissional ou em outras áreas importantes da vida.</p>
-
-                    <h4>Critério E — Diagnóstico diferencial</h4>
-                    <p>As perturbações não são melhor explicadas por <strong>deficiência intelectual</strong> ou por <strong>atraso global do desenvolvimento</strong>.</p>
-
-                    <div class="highlight highlight-yellow">
-                        <strong>Especificadores do DSM-5</strong>
-                        O clínico deve indicar: presença ou ausência de comprometimento intelectual, comprometimento de linguagem, condição médica ou genética associada, outro transtorno do neurodesenvolvimento ou comportamental, e catatonia.
-                    </div>
+            <div class="card" id="sec-comparacao">
+                <h3><span class="icon">⚖️</span> DSM-5 vs. CID-11</h3>
+                <div class="table-wrapper">
+                    <table class="levels-table">
+                        <thead><tr><th>Aspecto</th><th>DSM-5</th><th>CID-11</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Publicação</strong></td><td>2013 (APA)</td><td>2022 (OMS)</td></tr>
+                            <tr><td><strong>Código</strong></td><td>299.00</td><td>6A02</td></tr>
+                            <tr><td><strong>Proc. Sensorial</strong></td><td>Incluído no Critério B</td><td>Característica central</td></tr>
+                            <tr><td><strong>Subtipos</strong></td><td>Não (3 níveis)</td><td>Sim (8 subcategorias)</td></tr>
+                            <tr><td><strong>Uso principal</strong></td><td>Pesquisa e clínica (EUA)</td><td>Saúde pública (global)</td></tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
 
-                <!-- Níveis de gravidade -->
-                <div class="card" id="sec-niveis">
-                    <h3><span class="icon">📊</span> Níveis de Gravidade (DSM-5)</h3>
-                    <p>O DSM-5 estabeleceu três níveis de gravidade baseados no grau de apoio necessário:</p>
-
-                    <div class="table-wrapper">
-                        <table class="levels-table">
-                            <thead>
-                                <tr>
-                                    <th>Nível</th>
-                                    <th>Comunicação Social</th>
-                                    <th>Comportamentos Restritos/Repetitivos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><span class="level-badge level-1">Nível 1</span><br>Necessita apoio</td>
-                                    <td>Sem apoio, os déficits na comunicação social causam prejuízos perceptíveis. Dificuldade em iniciar interações sociais. Pode parecer ter interesse diminuído em interagir.</td>
-                                    <td>Inflexibilidade de comportamento causa interferência significativa em um ou mais contextos. Dificuldade em trocar de atividades. Problemas de organização e planejamento dificultam a independência.</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="level-badge level-2">Nível 2</span><br>Necessita apoio substancial</td>
-                                    <td>Déficits marcantes nas habilidades de comunicação verbal e não verbal. Prejuízos sociais aparentes mesmo com apoio. Interações limitadas e respostas reduzidas a aberturas sociais.</td>
-                                    <td>Inflexibilidade, dificuldade em lidar com mudanças e comportamentos restritos/repetitivos aparecem com frequência suficiente para serem óbvios ao observador casual. Angústia e/ou dificuldade em mudar o foco ou a ação.</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="level-badge level-3">Nível 3</span><br>Necessita apoio muito substancial</td>
-                                    <td>Déficits graves nas habilidades de comunicação verbal e não verbal. Funcionamento muito limitado, iniciação de interações sociais muito reduzida e resposta mínima a aberturas sociais de outros.</td>
-                                    <td>Inflexibilidade extrema, dificuldade significativa em lidar com mudanças. Comportamentos restritos/repetitivos interferem marcadamente no funcionamento em todas as esferas. Grande angústia ao mudar o foco ou a ação.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- CID-11 -->
-                <div class="card" id="sec-cid11">
-                    <h3><span class="icon">🌐</span> Classificação na CID-11 (OMS)</h3>
-                    <p>
-                        A <strong>Classificação Internacional de Doenças, 11ª revisão (CID-11)</strong>, da Organização Mundial da Saúde, classifica o TEA sob o código <strong>6A02</strong>. A CID-11 entrou em vigor em janeiro de 2022 e trouxe mudanças significativas:
-                    </p>
-
-                    <h4>Três características essenciais</h4>
-                    <ol>
-                        <li><strong>Déficits na comunicação social</strong> — Déficits persistentes na capacidade de iniciar e manter interação social recíproca e comunicação social.</li>
-                        <li><strong>Padrões restritos e repetitivos</strong> — Uma gama de padrões restritos, repetitivos e inflexíveis de comportamento, interesses ou atividades que são claramente atípicos ou excessivos para a idade e contexto sociocultural do indivíduo.</li>
-                        <li><strong>Prejuízo funcional</strong> — Os déficits são suficientemente graves para causar prejuízo no funcionamento pessoal, familiar, social, educacional, ocupacional ou em outras áreas importantes.</li>
-                    </ol>
-
-                    <div class="highlight highlight-green">
-                        <strong>Novidade da CID-11</strong>
-                        Diferentemente da CID-10, a CID-11 incluiu as <strong>respostas atípicas a estímulos sensoriais</strong> como uma característica central do diagnóstico — alinhando-se ao DSM-5. Além disso, oferece <strong>oito subcategorias</strong> de TEA para diferenciar indivíduos com base no nível intelectual e nas habilidades de linguagem.
-                    </div>
-
-                    <h4>Subcategorias da CID-11</h4>
-                    <div class="comparison-grid">
-                        <div class="comparison-box">
-                            <h5>Com deficiência intelectual</h5>
-                            <p>Com e sem comprometimento da linguagem funcional</p>
-                        </div>
-                        <div class="comparison-box">
-                            <h5>Sem deficiência intelectual</h5>
-                            <p>Com e sem comprometimento da linguagem funcional</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Diagnóstico na prática -->
-                <div class="card" id="sec-pratica">
-                    <h3><span class="icon">🔍</span> Como é Feito o Diagnóstico na Prática</h3>
-                    <p>
-                        O diagnóstico do TEA é <strong>essencialmente clínico</strong>. Não existe exame de sangue, ressonância ou teste genético que, isoladamente, confirme o autismo. O processo envolve:
-                    </p>
-                    <ul>
-                        <li><strong>Observação direta</strong> do comportamento da criança</li>
-                        <li><strong>Entrevistas</strong> com pais e cuidadores sobre o desenvolvimento</li>
-                        <li><strong>Aplicação de instrumentos padronizados</strong> de triagem e avaliação</li>
-                        <li><strong>Avaliação multidisciplinar</strong> (neuropediatra, psicólogo, fonoaudiólogo, etc.)</li>
-                    </ul>
-
-                    <h4>Instrumentos de triagem</h4>
-                    <p>
-                        Um dos instrumentos mais utilizados mundialmente é o <strong>M-CHAT-R</strong> (Modified Checklist for Autism in Toddlers, Revised), aplicável a partir dos <strong>16 meses de idade</strong>. No Brasil, o M-CHAT-R foi incluído na Caderneta de Saúde da Criança (3ª edição, 2022) pelo Ministério da Saúde.
-                    </p>
-
-                    <h4>Idade do diagnóstico</h4>
-                    <div class="highlight highlight-red">
-                        <strong>Detecção precoce é fundamental</strong>
-                        Sinais de alerta podem ser percebidos nos primeiros meses de vida. O diagnóstico geralmente é estabelecido entre os <strong>2 e 3 anos de idade</strong>. Segundo dados do CDC (2025), crianças com TEA e deficiência intelectual recebem diagnóstico mais cedo (mediana de <strong>43 meses</strong>) do que crianças sem deficiência intelectual (<strong>49 meses</strong>). A intervenção precoce deve começar <strong>mesmo antes da confirmação diagnóstica</strong>, diante da suspeita.
-                    </div>
-                </div>
-
-                <!-- TEA no Brasil -->
-                <div class="card" id="sec-brasil">
-                    <h3><span class="icon">🇧🇷</span> TEA no Brasil</h3>
-                    <p>
-                        No Brasil, o Sistema Único de Saúde (SUS) oferece uma rede de assistência para pessoas com TEA:
-                    </p>
-                    <ul>
-                        <li><strong>263 Centros Especializados em Reabilitação (CER)</strong> — para diagnóstico, tratamento e tecnologia assistiva</li>
-                        <li><strong>282 Centros de Atenção Psicossocial Infantojuvenil (CAPSi)</strong></li>
-                        <li><strong>2.795 Centros de Atenção Psicossocial (CAPS)</strong></li>
-                    </ul>
-                    <p>
-                        Em 2021, o SUS realizou <strong>9,6 milhões de atendimentos ambulatoriais</strong> para pessoas com autismo, sendo 4,1 milhões para crianças de até 9 anos. O Ministério da Saúde também lançou a <strong>Linha de Cuidado para Crianças com TEA</strong>, organizando o fluxo de atendimento e promovendo a detecção precoce.
-                    </p>
-
-                    <div class="highlight highlight-blue">
-                        <strong>Lei Berenice Piana (Lei 12.764/2012)</strong>
-                        Criou a Política Nacional de Proteção dos Direitos da Pessoa com Transtorno do Espectro Autista. A lei equipara pessoas com TEA a pessoas com deficiência para todos os efeitos legais, garantindo acesso a educação, saúde e proteção social. A Sociedade Brasileira de Pediatria recomenda que <strong>toda criança seja triada para TEA entre 18 e 24 meses de idade</strong>, mesmo sem sinais clínicos evidentes.
-                    </div>
-                </div>
-
-                <!-- TEA na Espanha -->
-                <div class="card" id="sec-espanha">
-                    <h3><span class="icon">🇪🇸</span> TEA na Espanha</h3>
-                    <p>
-                        Na Espanha, estima-se que existam aproximadamente <strong>127.612 pessoas com TEA certificadas</strong> (76,5% homens; 23,5% mulheres), segundo dados do IMSERSO (2021). No entanto, a prevalência real pode ser maior, pois muitas pessoas ainda não possuem diagnóstico formal.
-                    </p>
-
-                    <h4>Estratégia Espanhola sobre TEA</h4>
-                    <p>
-                        Em 2015, o Conselho de Ministros aprovou a <strong>Estratégia Espanhola sobre Transtornos do Espectro do Autismo</strong>, o marco de referência nacional para políticas relacionadas ao TEA. Em abril de 2024, foi apresentado o primeiro <strong>Plano de Ação para o TEA</strong>, com orçamento de <strong>39,6 milhões de euros</strong> distribuídos em 6 linhas estratégicas:
-                    </p>
-                    <ul>
-                        <li><strong>Educação e emprego inclusivos</strong> — 28,2 milhões de euros (maior investimento)</li>
-                        <li><strong>Vida independente e inclusão</strong> — 4,6 milhões de euros</li>
-                        <li><strong>Justiça e direitos</strong> — 3,1 milhões de euros</li>
-                        <li><strong>Conhecimento e sensibilização</strong> — 2,7 milhões de euros</li>
-                        <li><strong>Investigação e inovação</strong> — 467 mil euros</li>
-                        <li><strong>Detecção e diagnóstico precoce</strong> — 320 mil euros</li>
-                    </ul>
-
-                    <h4>Diagnóstico na Espanha</h4>
-                    <p>
-                        O diagnóstico é feito pelo sistema público de saúde, gerenciado pelas <strong>Comunidades Autônomas</strong>. Isso significa que os recursos e tempos de espera podem variar significativamente entre regiões. Por exemplo, na Catalunha a prevalência diagnosticada varia de 0,55% a 1,84% dependendo da área, e na Andaluzia 1 em cada 70 crianças tem diagnóstico de TEA.
-                    </p>
-
-                    <div class="highlight highlight-green">
-                        <strong>Organizações de referência na Espanha</strong>
-                        <ul style="margin: 0.5rem 0 0 1.2rem;">
-                            <li><strong>Confederación Autismo España</strong> (autismo.org.es) — Principal organização nacional</li>
-                            <li><strong>Centro Español sobre TEA</strong> (centroautismo.es) — Primeiro centro dedicado a formação, investigação e divulgação sobre autismo</li>
-                            <li><strong>AETAPI</strong> (aetapi.org) — Associação de profissionais do autismo</li>
-                            <li><strong>FESPAU</strong> (fespau.es) — Federação de apoio e recursos</li>
-                        </ul>
-                    </div>
-
-                    <h4>Formação profissional e emprego no campo do TEA</h4>
-                    <p>
-                        O <strong>Campus Autismo España-Ángel Rivière</strong> oferece formações especializadas para profissionais que trabalham com autismo. Em 2025, mais de <strong>2.000 profissionais</strong> da Justiça e da Guardia Civil receberam formação sobre autismo. A nova Lei de Formação Profissional também contempla necessidades específicas de apoio educativo para pessoas com TEA.
-                    </p>
-
-                    <div class="highlight highlight-yellow">
-                        <strong>Importante para profissionais brasileiros na Espanha</strong>
-                        Na Espanha não existe uma lei específica sobre autismo como a Lei Berenice Piana do Brasil. A proteção legal se dá através da legislação geral de <strong>discapacidad</strong> (deficiência) e <strong>dependencia</strong> (dependência). O diagnóstico clínico de TEA é reconhecido para acesso a direitos e prestações sociais. Para atuar profissionalmente, é necessário verificar a <strong>homologação do título</strong> junto ao Ministério de Educação espanhol e os requisitos específicos de cada Comunidade Autônoma.
-                    </div>
-                </div>
-
-                <!-- DSM-5 vs CID-11 -->
-                <div class="card" id="sec-comparacao">
-                    <h3><span class="icon">⚖️</span> DSM-5 vs. CID-11 — Comparação Rápida</h3>
-                    <div class="table-wrapper">
-                        <table class="levels-table">
-                            <thead>
-                                <tr>
-                                    <th>Aspecto</th>
-                                    <th>DSM-5</th>
-                                    <th>CID-11</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Publicação</strong></td>
-                                    <td>2013 (APA)</td>
-                                    <td>2022 (OMS)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Código</strong></td>
-                                    <td>299.00</td>
-                                    <td>6A02</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Domínios centrais</strong></td>
-                                    <td>2 (comunicação social + comportamentos restritos)</td>
-                                    <td>2 (comunicação social + comportamentos restritos)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Processamento sensorial</strong></td>
-                                    <td>Incluído no Critério B</td>
-                                    <td>Incluído como característica central</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Subtipos</strong></td>
-                                    <td>Não (espectro único com 3 níveis de gravidade)</td>
-                                    <td>Sim (8 subcategorias baseadas em linguagem e QI)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Uso principal</strong></td>
-                                    <td>Pesquisa e clínica (EUA)</td>
-                                    <td>Saúde pública e codificação (global)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </section>
-
-            <!-- Fontes -->
-            <section class="sources" id="fontes">
+            <!-- Fontes Neurociência -->
+            <div class="sources">
                 <h3>📚 Fontes e Referências</h3>
+                <div class="source-item"><span class="source-badge">CDC</span><div><a href="https://www.cdc.gov/autism/index.html" target="_blank" rel="noopener">Autism Spectrum Disorder (ASD) — CDC</a></div></div>
+                <div class="source-item"><span class="source-badge">CDC</span><div><a href="https://www.cdc.gov/autism/hcp/diagnosis/index.html" target="_blank" rel="noopener">Clinical Testing and Diagnosis for ASD — CDC</a></div></div>
+                <div class="source-item"><span class="source-badge">DSM-5</span><div><a href="https://iacc.hhs.gov/about-iacc/subcommittees/resources/dsm5-diagnostic-criteria.shtml" target="_blank" rel="noopener">DSM-5 Diagnostic Criteria — IACC / HHS</a></div></div>
+                <div class="source-item"><span class="source-badge">OMS</span><div><a href="https://icd.who.int/en/" target="_blank" rel="noopener">ICD-11 — World Health Organization</a></div></div>
+                <div class="source-item"><span class="source-badge">OMS</span><div><a href="https://www.nature.com/articles/s41380-023-02354-y" target="_blank" rel="noopener">Autism spectrum disorder in ICD-11 — Molecular Psychiatry</a></div></div>
+                <div class="source-item"><span class="source-badge">Brasil</span><div><a href="https://linhasdecuidado.saude.gov.br/portal/transtorno-do-espectro-autista/definicao-tea/" target="_blank" rel="noopener">Definição TEA — Ministério da Saúde</a></div></div>
+                <div class="source-item"><span class="source-badge">Brasil</span><div><a href="https://www.sbp.com.br/fileadmin/user_upload/Ped._Desenvolvimento_-_21775b-MO_-_Transtorno_do_Espectro_do_Autismo.pdf" target="_blank" rel="noopener">Manual TEA — Sociedade Brasileira de Pediatria</a></div></div>
+                <div class="source-item"><span class="source-badge">Espanha</span><div><a href="https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/derechos-sociales-consumo-agenda-2030/paginas/2024/020424-plan-accion-autismo.aspx" target="_blank" rel="noopener">Plan de Acción TEA — La Moncloa</a></div></div>
+                <div class="source-item"><span class="source-badge">Espanha</span><div><a href="https://autismo.org.es/" target="_blank" rel="noopener">Confederación Autismo España</a></div></div>
+                <div class="source-item"><span class="source-badge">CDC</span><div><a href="https://www.cdc.gov/mmwr/volumes/74/ss/ss7402a1.htm" target="_blank" rel="noopener">Prevalence and Early Identification — MMWR 2025</a></div></div>
+            </div>
 
-                <div class="source-item">
-                    <span class="source-badge">CDC</span>
-                    <div>
-                        <a href="https://www.cdc.gov/autism/index.html" target="_blank" rel="noopener">Autism Spectrum Disorder (ASD) — CDC</a>
-                        <div class="source-desc">Página principal do CDC sobre TEA: definição, sinais e sintomas, dados e estatísticas</div>
-                    </div>
-                </div>
+        </div>
+    </div>
 
-                <div class="source-item">
-                    <span class="source-badge">CDC</span>
-                    <div>
-                        <a href="https://www.cdc.gov/autism/hcp/diagnosis/index.html" target="_blank" rel="noopener">Clinical Testing and Diagnosis for ASD — CDC</a>
-                        <div class="source-desc">Orientações clínicas para diagnóstico e avaliação do TEA</div>
-                    </div>
-                </div>
+    <!-- ============================================ -->
+    <!-- SECTION: MÉTODOS EDUCATIVOS -->
+    <!-- ============================================ -->
+    <div class="section-view" id="sec-metodos">
+        <div class="section-header">
+            <h2>📚 Métodos Educativos</h2>
+            <p>TEACCH, ABA e Modelo Denver</p>
+        </div>
+        <div class="section-body">
+            <div class="card">
+                <h3><span class="icon">🔜</span> Em breve</h3>
+                <p>Esta seção será desenvolvida em breve com conteúdo detalhado sobre os três principais métodos de intervenção para TEA:</p>
+                <ul>
+                    <li><strong>TEACCH</strong> — Treatment and Education of Autistic and Communication Handicapped Children</li>
+                    <li><strong>ABA</strong> — Applied Behavior Analysis (Análise do Comportamento Aplicada)</li>
+                    <li><strong>Modelo Denver</strong> — Early Start Denver Model (ESDM)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-                <div class="source-item">
-                    <span class="source-badge">DSM-5</span>
-                    <div>
-                        <a href="https://iacc.hhs.gov/about-iacc/subcommittees/resources/dsm5-diagnostic-criteria.shtml" target="_blank" rel="noopener">DSM-5 Diagnostic Criteria — IACC / HHS</a>
-                        <div class="source-desc">Critérios diagnósticos completos do DSM-5 para TEA (Departamento de Saúde dos EUA)</div>
-                    </div>
-                </div>
+    <!-- ============================================ -->
+    <!-- SECTION: CARREIRA NA ESPANHA -->
+    <!-- ============================================ -->
+    <div class="section-view" id="sec-carreira">
+        <div class="section-header">
+            <h2>🇪🇸 Carreira na Espanha</h2>
+            <p>Convalidação, oportunidades profissionais e motivação</p>
+        </div>
+        <div class="section-body">
 
-                <div class="source-item">
-                    <span class="source-badge">DSM-5</span>
-                    <div>
-                        <a href="https://www.research.chop.edu/car-autism-roadmap/diagnostic-criteria-for-autism-spectrum-disorder-in-the-dsm-5" target="_blank" rel="noopener">Diagnostic Criteria for ASD in the DSM-5 — CHOP Research Institute</a>
-                        <div class="source-desc">Hospital Infantil da Filadélfia — explicação dos critérios DSM-5</div>
-                    </div>
-                </div>
+            <div class="sub-nav">
+                <a href="#conv" onclick="document.getElementById('conv').scrollIntoView({behavior:'smooth'});return false;">Convalidação</a>
+                <a href="#oport" onclick="document.getElementById('oport').scrollIntoView({behavior:'smooth'});return false;">Oportunidades</a>
+                <a href="#motiv" onclick="document.getElementById('motiv').scrollIntoView({behavior:'smooth'});return false;">Motivação</a>
+            </div>
 
-                <div class="source-item">
-                    <span class="source-badge">OMS</span>
-                    <div>
-                        <a href="https://icd.who.int/en/" target="_blank" rel="noopener">ICD-11 — World Health Organization</a>
-                        <div class="source-desc">Classificação Internacional de Doenças, 11ª revisão (CID-11)</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">OMS</span>
-                    <div>
-                        <a href="https://www.nature.com/articles/s41380-023-02354-y" target="_blank" rel="noopener">Autism spectrum disorder in ICD-11 — Molecular Psychiatry (Nature)</a>
-                        <div class="source-desc">Reflexão crítica sobre o impacto da CID-11 na prática clínica e pesquisa</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">PMC</span>
-                    <div>
-                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9881114/" target="_blank" rel="noopener">Innovations of the ICD-11 in the Field of ASD — PMC/NIH</a>
-                        <div class="source-desc">Artigo científico sobre as inovações da CID-11 no campo do TEA</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">PMC</span>
-                    <div>
-                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7082249/" target="_blank" rel="noopener">Autism spectrum disorder: definition, epidemiology, causes, and clinical evaluation — PMC/NIH</a>
-                        <div class="source-desc">Revisão científica completa: definição, epidemiologia, causas e avaliação clínica</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">Brasil</span>
-                    <div>
-                        <a href="https://linhasdecuidado.saude.gov.br/portal/transtorno-do-espectro-autista/definicao-tea/" target="_blank" rel="noopener">Definição — TEA na Criança — Ministério da Saúde</a>
-                        <div class="source-desc">Linhas de Cuidado do Ministério da Saúde do Brasil para TEA</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">Brasil</span>
-                    <div>
-                        <a href="https://www.gov.br/saude/pt-br/assuntos/noticias/2022/abril/tea-saiba-o-que-e-o-transtorno-do-espectro-autista-e-como-o-sus-tem-dado-assistencia-a-pacientes-e-familiares" target="_blank" rel="noopener">TEA — Assistência do SUS — Ministério da Saúde</a>
-                        <div class="source-desc">Informações sobre o atendimento do SUS a pacientes com TEA e familiares</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">Brasil</span>
-                    <div>
-                        <a href="https://www.sbp.com.br/fileadmin/user_upload/Ped._Desenvolvimento_-_21775b-MO_-_Transtorno_do_Espectro_do_Autismo.pdf" target="_blank" rel="noopener">Manual de Orientação — TEA — Sociedade Brasileira de Pediatria</a>
-                        <div class="source-desc">Documento oficial da SBP sobre diagnóstico e acompanhamento do TEA</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">Brasil</span>
-                    <div>
-                        <a href="https://agenciabrasil.ebc.com.br/saude/noticia/2024-04/entenda-o-que-e-o-transtorno-do-espectro-autista" target="_blank" rel="noopener">Entenda o que é o TEA — Agência Brasil</a>
-                        <div class="source-desc">Reportagem da Agência Brasil sobre o Transtorno do Espectro Autista</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">CDC</span>
-                    <div>
-                        <a href="https://www.cdc.gov/mmwr/volumes/74/ss/ss7402a1.htm" target="_blank" rel="noopener">Prevalence and Early Identification of ASD — MMWR 2025</a>
-                        <div class="source-desc">Dados mais recentes (2025) de prevalência e identificação precoce do TEA nos EUA</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">Espanha</span>
-                    <div>
-                        <a href="https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/derechos-sociales-consumo-agenda-2030/paginas/2024/020424-plan-accion-autismo.aspx" target="_blank" rel="noopener">Plan de Acción para el TEA — La Moncloa (Gobierno de España)</a>
-                        <div class="source-desc">Primeiro Plano de Ação nacional para o TEA na Espanha (2024-2027)</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">Espanha</span>
-                    <div>
-                        <a href="https://autismo.org.es/" target="_blank" rel="noopener">Confederación Autismo España</a>
-                        <div class="source-desc">Principal organização nacional sobre TEA — recursos, direitos e informação</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">Espanha</span>
-                    <div>
-                        <a href="https://centroautismo.es/el-centro/" target="_blank" rel="noopener">Centro Español sobre Trastorno del Espectro del Autismo</a>
-                        <div class="source-desc">Centro dedicado a formação, investigação e divulgação sobre autismo</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">Espanha</span>
-                    <div>
-                        <a href="https://aetapi.org/" target="_blank" rel="noopener">AETAPI — Asociación Española de Profesionales del Autismo</a>
-                        <div class="source-desc">Associação profissional de referência para quem trabalha com TEA na Espanha</div>
-                    </div>
-                </div>
-
-                <div class="source-item">
-                    <span class="source-badge">Espanha</span>
-                    <div>
-                        <a href="https://autismo.org.es/que-hacemos/lineas-de-accion/empleo/" target="_blank" rel="noopener">Empleo y Autismo — Autismo España</a>
-                        <div class="source-desc">Recursos sobre emprego e inclusão laboral de pessoas com TEA</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ============================================ -->
-            <!-- SEÇÃO: CONVALIDAÇÃO DE ESTUDOS -->
-            <!-- ============================================ -->
-            <section id="sec-convalidacao" class="card" style="margin-top: 3rem; border-left: 4px solid var(--primary); scroll-margin-top: 80px;">
+            <!-- CONVALIDAÇÃO -->
+            <div class="card" id="conv" style="border-left: 4px solid var(--primary);">
                 <h3><span class="icon">🎓</span> Como Convalidar seus Estudos Brasileiros na Espanha</h3>
-                <p>
-                    Para exercer uma profissão regulada na Espanha com um título obtido no Brasil, é necessário passar por um processo de reconhecimento oficial. Existem <strong>três vias possíveis</strong>:
-                </p>
+                <p>Para exercer uma profissão regulada na Espanha com um título obtido no Brasil, existem <strong>três vias possíveis</strong>:</p>
 
                 <h4>1. Homologação (Homologación)</h4>
                 <div class="highlight highlight-blue">
                     <strong>Para profissões reguladas</strong>
-                    Habilita para exercer profissões reguladas na Espanha (como psicólogo, enfermeiro, médico, professor, etc.). As profissões reguladas estão listadas no <strong>Anexo do Real Decreto 889/2022</strong>. Se a sua profissão não consta na lista, não é possível homologar — mas pode solicitar equivalência.
+                    Habilita para exercer profissões reguladas (psicólogo, enfermeiro, médico, professor, etc.). As profissões reguladas estão listadas no <strong>Anexo do Real Decreto 889/2022</strong>.
                 </div>
-                <p><strong>Passos do processo:</strong></p>
+                <p><strong>Passos:</strong></p>
                 <ol>
-                    <li><strong>Verificar</strong> se a sua profissão está na lista de profissões reguladas (Anexo do RD 889/2022)</li>
-                    <li><strong>Reunir documentação:</strong>
-                        <ul>
-                            <li>Passaporte ou NIE</li>
-                            <li>Diploma universitário (original + tradução juramentada)</li>
-                            <li>Histórico acadêmico com carga horária e conteúdos</li>
-                            <li>Apostila de Haia em todos os documentos</li>
-                            <li>Comprovante de pagamento da taxa</li>
-                        </ul>
-                    </li>
-                    <li><strong>Submeter</strong> o pedido exclusivamente pela sede eletrônica: <a href="https://universidades.sede.gob.es" target="_blank" rel="noopener">universidades.sede.gob.es</a></li>
-                    <li><strong>Aguardar</strong> a resolução (prazo máximo: <strong>6 meses</strong>)</li>
-                    <li>Se aprovada com <strong>complementos formativos</strong>, completar as disciplinas exigidas em uma universidade espanhola</li>
+                    <li>Verificar se a profissão está na lista de profissões reguladas</li>
+                    <li>Reunir: Passaporte/NIE, Diploma (original + tradução juramentada), Histórico acadêmico, Apostila de Haia, Comprovante de pagamento</li>
+                    <li>Submeter pela sede eletrônica: <a href="https://universidades.sede.gob.es" target="_blank">universidades.sede.gob.es</a></li>
+                    <li>Aguardar resolução (prazo máximo: <strong>6 meses</strong>)</li>
                 </ol>
 
                 <h4>2. Equivalência (Equivalencia)</h4>
-                <p>
-                    Para profissões <strong>não reguladas</strong>. Reconhece o nível acadêmico do seu título (Grado ou Máster) com efeitos acadêmicos e administrativos em todo o território espanhol. <strong>Não habilita</strong> para exercer profissões reguladas, mas permite trabalhar em áreas não reguladas e acessar oposições.
-                </p>
+                <p>Para profissões <strong>não reguladas</strong>. Reconhece o nível acadêmico do título com efeitos em todo o território espanhol.</p>
 
                 <h4>3. Convalidação parcial</h4>
-                <p>
-                    Permite convalidar disciplinas individuais se você decidir cursar uma formação complementar na Espanha. Útil se precisar adaptar a sua formação ao sistema espanhol.
-                </p>
+                <p>Permite convalidar disciplinas individuais para cursar formação complementar na Espanha.</p>
 
                 <div class="highlight highlight-yellow">
                     <strong>Caso especial: Psicologia</strong>
-                    Na Espanha, para exercer como psicólogo clínico/sanitário é necessário: (1) homologar o título de Psicologia ao Grado, (2) realizar o <strong>Máster em Psicologia General Sanitaria</strong> (habilitante), e (3) colegiar-se no <strong>Colegio Oficial de Psicólogos</strong> da sua Comunidade Autônoma. São exigidos no mínimo 300 créditos ECTS com pelo menos 180 de conteúdo sanitário.
+                    Requer: (1) homologar título ao Grado, (2) Máster em Psicologia General Sanitaria, (3) colegiar-se no Colegio Oficial de Psicólogos.
                 </div>
 
-                <h4>Alternativa rápida: Formação Profissional na Espanha</h4>
-                <p>
-                    Enquanto aguarda a homologação (que pode demorar), considere cursar uma <strong>Formação Profissional (FP)</strong> espanhola, que pode levar de 1 a 2 anos e abre portas imediatas:
-                </p>
+                <h4>Alternativa rápida: Formação Profissional</h4>
                 <ul>
-                    <li><strong>Técnico em Integração Social</strong> (Grado Superior) — permite trabalhar diretamente com pessoas com TEA</li>
-                    <li><strong>Técnico em Atenção a Pessoas em Situação de Dependência (TAPSD)</strong> (Grado Medio) — 2.000 horas, permite trabalhar em centros de dia, residências e domicílios</li>
+                    <li><strong>Técnico em Integração Social</strong> (Grado Superior, ~2 anos)</li>
+                    <li><strong>TAPSD</strong> — Atenção a Pessoas Dependentes (Grado Medio, 2.000 horas)</li>
                 </ul>
 
-                <h4>Órgão responsável</h4>
-                <p>
-                    <strong>Subdirección General de Títulos y Ordenación Universitaria</strong><br>
-                    Paseo de la Castellana, 162 — 28046 Madrid<br>
-                    Portal: <a href="https://www.ciencia.gob.es/Universidades/validate/homologacion.html" target="_blank" rel="noopener">ciencia.gob.es — Homologación</a><br>
-                    Consulta de expedientes: <a href="https://www.ciencia.gob.es/Formularios/ConsultasTitulos.html" target="_blank" rel="noopener">Consultar estado do processo</a>
-                </p>
-
                 <div class="sources" style="margin-top: 1.5rem; padding: 1.2rem;">
-                    <h4 style="margin-top: 0;">Fontes desta seção</h4>
-                    <div class="source-item">
-                        <span class="source-badge">Oficial</span>
-                        <div><a href="https://www.ciencia.gob.es/Universidades/validate/homologacion.html" target="_blank" rel="noopener">Homologación de títulos extranjeros — Ministerio de Ciencia, Innovación y Universidades</a></div>
-                    </div>
-                    <div class="source-item">
-                        <span class="source-badge">Oficial</span>
-                        <div><a href="https://universidades.sede.gob.es/procedimientos/choose-ambit/idp/1029" target="_blank" rel="noopener">Sede Electrónica — Solicitud de homologación</a></div>
-                    </div>
-                    <div class="source-item">
-                        <span class="source-badge">Oficial</span>
-                        <div><a href="https://www.ciencia.gob.es/Universidades/validate/equivalencia.html" target="_blank" rel="noopener">Declaración de equivalencia de títulos extranjeros</a></div>
-                    </div>
-                    <div class="source-item">
-                        <span class="source-badge">Oficial</span>
-                        <div><a href="https://www.todofp.es/que-estudiar/familias-profesionales/servicios-socioculturales-comunidad/atencion-personas-situacion-dependencia.html" target="_blank" rel="noopener">FP Atención a Personas en Situación de Dependencia — TodoFP (Ministerio de Educación)</a></div>
-                    </div>
-                    <div class="source-item">
-                        <span class="source-badge">Oficial</span>
-                        <div><a href="https://www.ciencia.gob.es/Destacados/ViaEspecificaTitulos.html" target="_blank" rel="noopener">Preguntas frecuentes — Homologaciones y equivalencias</a></div>
-                    </div>
+                    <h4 style="margin-top: 0;">Fontes</h4>
+                    <div class="source-item"><span class="source-badge">Oficial</span><div><a href="https://www.ciencia.gob.es/Universidades/validate/homologacion.html" target="_blank">Homologación — Ministerio de Ciencia</a></div></div>
+                    <div class="source-item"><span class="source-badge">Oficial</span><div><a href="https://universidades.sede.gob.es/procedimientos/choose-ambit/idp/1029" target="_blank">Sede Electrónica — Solicitud</a></div></div>
+                    <div class="source-item"><span class="source-badge">Oficial</span><div><a href="https://www.ciencia.gob.es/Universidades/validate/equivalencia.html" target="_blank">Declaración de equivalencia</a></div></div>
+                    <div class="source-item"><span class="source-badge">FP</span><div><a href="https://www.todofp.es/que-estudiar/familias-profesionales/servicios-socioculturales-comunidad/atencion-personas-situacion-dependencia.html" target="_blank">TAPSD — TodoFP</a></div></div>
                 </div>
-            </section>
+            </div>
 
-            <!-- ============================================ -->
-            <!-- SEÇÃO: OPORTUNIDADES PROFISSIONAIS -->
-            <!-- ============================================ -->
-            <section id="sec-oportunidades" class="card" style="margin-top: 2rem; border-left: 4px solid var(--success); scroll-margin-top: 80px;">
-                <h3><span class="icon">💼</span> Oportunidades Profissionais na Espanha — Foco em Crianças com TEA</h3>
-                <p>
-                    A sua experiência com <strong>crianças autistas no Brasil</strong> é o seu maior trunfo. Na Espanha existe uma enorme demanda por profissionais especializados em intervenção infantil com TEA. O projeto <strong>BBMiradas</strong> (detecção precoce nacional) identificou 312 casos de autismo em 1.160 bebês analisados — demonstrando a escala da necessidade. Estas são oportunidades reais, organizadas pelo nível de exigência:
-                </p>
+            <!-- OPORTUNIDADES -->
+            <div class="card" id="oport" style="border-left: 4px solid var(--success);">
+                <h3><span class="icon">💼</span> Oportunidades Profissionais — Foco em Crianças com TEA</h3>
+                <p>A sua experiência com <strong>crianças autistas no Brasil</strong> é o seu maior trunfo. Na Espanha existe uma enorme demanda por profissionais especializados em intervenção infantil com TEA.</p>
 
-                <!-- BLOQUE 0: Foco crianças -->
                 <div class="highlight highlight-red" style="margin-bottom: 1.5rem;">
-                    <strong>&#9889; A sua especialidade tem alta demanda</strong>
-                    Na Espanha, os <strong>Centros de Desenvolvimento Infantil e Atenção Precoce (CDIAT)</strong> são a porta de entrada para crianças com TEA de 0 a 6 anos. Estes centros precisam de equipas interdisciplinares (psicólogos, logopedas, terapeutas ocupacionais, estimuladores). Muitos estão com listas de espera de meses, o que gera uma oportunidade enorme para profissionais com experiência em intervenção infantil.
+                    <strong>A sua especialidade tem alta demanda</strong>
+                    Os <strong>CDIAT</strong> (Centros de Desenvolvimento Infantil e Atenção Precoce) atendem crianças de 0 a 6 anos e precisam de equipas interdisciplinares. Muitos estão com listas de espera de meses.
                 </div>
 
-                <!-- BLOQUE 1: Sin homologación -->
                 <h4 style="color: var(--success);">&#9679; Oportunidades IMEDIATAS (sem homologação)</h4>
-                <p>Trabalhos que pode começar enquanto aguarda a homologação ou complementa a formação:</p>
 
                 <div class="highlight highlight-green">
                     <strong>1. Estimulação e apoio a domicílio para crianças com TEA</strong>
-                    Oferecer serviços de <strong>estimulação precoce, acompanhamento e apoio comportamental</strong> a crianças com TEA nas suas casas. Muitas famílias espanholas procuram profissionais para reforço em casa enquanto esperam vaga nos CDIAT — especialmente em atividades de comunicação, rotinas, habilidades sociais e estimulação sensorial. Não é uma "terapia clínica" regulada, mas sim <strong>apoio educativo e comportamental infantil</strong>.
-                    <br><br>
-                    <strong>O que pode oferecer:</strong> Sessões de estimulação multissensorial através do jogo, treino de comunicação (gestos, sons, PECS), criação de rotinas visuais, trabalho de atenção conjunta e imitação.
-                    <br><br>
-                    <strong>Como começar:</strong> Alta como autônoma + seguro de responsabilidade civil. Divulgar em associações de famílias, AMPAs (associações de pais de escolas), redes sociais e plataformas locais.
+                    Sessões de estimulação multissensorial através do jogo, treino de comunicação, criação de rotinas visuais, trabalho de atenção conjunta. Como autônoma + seguro de responsabilidade civil.
                 </div>
 
                 <div class="highlight highlight-green">
-                    <strong>2. Acompanhante especializada para crianças (sombra escolar)</strong>
-                    Na Espanha muitas crianças com TEA precisam de um/a <strong>acompanhante especializado/a na escola</strong> (chamado "sombra" ou "monitor/a de apoio"). Este profissional ajuda a criança a integrar-se na sala de aula, adapta atividades e facilita a comunicação com colegas e professores. A demanda é enorme e a experiência com crianças autistas é o principal requisito.
-                    <br><br>
-                    <strong>Onde procurar:</strong> Associações de famílias, colégios com programas de inclusão, e plataformas como <strong>InfoJobs</strong> (buscar "monitor apoyo TEA" ou "sombra autismo").
+                    <strong>2. Sombra escolar / acompanhante especializada</strong>
+                    Ajudar crianças com TEA a integrar-se na escola, adaptar atividades e facilitar comunicação. Procurar em: associações de famílias, InfoJobs ("monitor apoyo TEA").
                 </div>
 
                 <div class="highlight highlight-green">
                     <strong>3. Monitora de atividades extraescolares adaptadas</strong>
-                    Muitas famílias com crianças autistas encontram <strong>dificuldades para inscrever os filhos em atividades extraescolares</strong>. Autismo España publicou uma guia sobre o direito dos menores a participar nestas atividades. Você pode oferecer-se como monitora adaptada ou criar as suas próprias atividades (artes, psicomotricidade, música sensorial, jogos sociais).
-                    <br><br>
-                    <strong>Oportunidade:</strong> Contactar empresas de extraescolares para oferecer os seus serviços como especialista, ou criar o seu próprio grupo de atividades adaptadas.
+                    Atividades adaptadas: artes, psicomotricidade, música sensorial, jogos sociais para crianças com TEA.
                 </div>
 
                 <div class="highlight highlight-green">
                     <strong>4. Cuidadora especializada / babysitter TEA</strong>
-                    Trabalhar como cuidadora de crianças com TEA, com foco na sua experiência especializada. As famílias pagam mais por alguém que <strong>entenda as necessidades do seu filho</strong> — crises sensoriais, rigidez de rotinas, comunicação não verbal. Plataformas como <strong>Cuideo, Cuidum, Sitly</strong> e ofertas em <strong>InfoJobs</strong> publicam vagas constantemente.
-                    <br><br>
-                    <strong>Requisito:</strong> NIE + permissão de trabalho. A sua formação em TEA infantil é um diferencial enorme.
+                    Famílias pagam mais por quem entenda crises sensoriais, rigidez de rotinas e comunicação não verbal. Plataformas: Cuideo, Sitly, InfoJobs.
                 </div>
 
                 <div class="highlight highlight-green">
                     <strong>5. Aulas particulares e reforço escolar especializado</strong>
-                    Dar aulas particulares a crianças com TEA, adaptando o ensino às suas necessidades — apoio visual, estruturação do tempo, adaptação de materiais. Muitas famílias pagam por professores com conhecimento em autismo.
-                    <br><br>
-                    <strong>Plataformas:</strong> Tusclasesparticulares, Superprof, Classgap. Pode criar perfil destacando a especialização em TEA infantil.
+                    Apoio visual, estruturação do tempo, adaptação de materiais. Plataformas: Superprof, Classgap.
                 </div>
 
                 <div class="highlight highlight-green">
                     <strong>6. Monitora / auxiliar em centros e associações infantis</strong>
-                    Associações como <strong>ALEPH-TEA (Madrid)</strong>, as federadas na <strong>Confederación Autismo España</strong> e <strong>Plena Inclusión</strong> contratam regularmente monitores e auxiliares para atividades infantis, programas de ócio adaptado e apoio em centros de dia. ALEPH-TEA, por exemplo, oferece programas de excursões de fim de semana e atividades extraescolares.
-                    <br><br>
-                    <strong>Onde procurar:</strong> <a href="https://aetapi.org/oferta-de-empleo/" target="_blank" rel="noopener">Tablero de empleo AETAPI</a> | <a href="https://es.indeed.com/q-autismo-empleos.html" target="_blank" rel="noopener">Indeed — ofertas autismo</a> | <a href="https://autismo.org.es/oferta-de-empleo-aleph-tea-terapeuta-en-el-servicio-de-apoyo-e-intervencion-en/" target="_blank" rel="noopener">Ofertas ALEPH-TEA</a>
+                    Associações como ALEPH-TEA, Confederación Autismo España e Plena Inclusión contratam monitores para atividades infantis e programas de ócio adaptado.
                 </div>
 
-                <!-- BLOQUE 2: Con formación complementaria -->
-                <h4 style="color: var(--warning);">&#9679; Com formação complementar na Espanha</h4>
-                <p>Oportunidades que se abrem ao fazer uma FP ou curso complementar:</p>
+                <h4 style="color: var(--warning);">&#9679; Com formação complementar</h4>
 
                 <div class="highlight highlight-yellow">
-                    <strong>7. Trabalhar em Centros de Atenção Precoce (CDIAT)</strong>
-                    Os CDIAT atendem crianças de <strong>0 a 6 anos</strong> com alterações no desenvolvimento ou risco de apresentá-las. As equipas são interdisciplinares e incluem: psicólogos, logopedas, fisioterapeutas, terapeutas ocupacionais e <strong>especialistas em estimulação precoce</strong>. Com a homologação do título ou uma FP complementar, pode candidatar-se a estes centros.
-                    <br><br>
-                    <strong>Nota:</strong> Os CDIAT variam por Comunidade Autônoma. Algumas exigem título universitário homologado, outras aceitam FP + experiência.
+                    <strong>7. Trabalhar em CDIAT</strong>
+                    Centros que atendem crianças de 0 a 6 anos com alterações no desenvolvimento. Equipas interdisciplinares.
                 </div>
-
                 <div class="highlight highlight-yellow">
                     <strong>8. Técnica em Integração Social</strong>
-                    Com o título de <strong>Técnico Superior en Integración Social</strong> (FP de Grado Superior, ~2 anos), pode trabalhar em:
-                    <ul style="margin: 0.5rem 0 0 1.2rem;">
-                        <li>Centros de atenção a crianças com TEA</li>
-                        <li>Programas de inclusão escolar</li>
-                        <li>Serviços de apoio educativo em escolas</li>
-                        <li>Serviços sociais municipais com foco infantil</li>
-                    </ul>
-                    <strong>Vagas reais:</strong> Associações como <a href="https://autismomadrid.es/entidades-federadas/ofertas-de-empleo-pauta-cuidadores-e-integrador-social/" target="_blank" rel="noopener">Pauta (Madrid)</a> publicam ofertas frequentemente.
+                    FP Grado Superior (~2 anos). Trabalhar em centros TEA, programas de inclusão escolar, serviços sociais.
                 </div>
-
                 <div class="highlight highlight-yellow">
-                    <strong>9. Técnica em Atenção a Pessoas Dependentes (TAPSD)</strong>
-                    FP de Grado Medio (~2.000 horas). Habilita para trabalhar em domicílios e centros com crianças dependentes, incluindo crianças com TEA. Foco em cuidados diários, estimulação e acompanhamento.
+                    <strong>9. TAPSD — Atenção a Pessoas Dependentes</strong>
+                    FP Grado Medio (2.000h). Trabalhar em domicílios e centros com crianças dependentes.
                 </div>
-
                 <div class="highlight highlight-yellow">
                     <strong>10. Técnica em Educação Infantil</strong>
-                    FP de Grado Superior (~2 anos). Permite trabalhar em <strong>escolas infantis (0-3 anos) e creches</strong>. Com a sua especialização em TEA, seria uma profissional muito valorizada nestes contextos para a detecção precoce e o apoio a crianças com sinais de autismo.
+                    FP Grado Superior (~2 anos). Trabalhar em escolas infantis (0-3 anos) com foco em detecção precoce.
                 </div>
 
-                <!-- BLOQUE 3: Emprendimiento -->
-                <h4 style="color: var(--primary);">&#9679; Empreendimentos e projetos próprios</h4>
+                <h4 style="color: var(--primary);">&#9679; Empreendimentos próprios</h4>
 
                 <div class="highlight highlight-blue">
                     <strong>11. Serviço de estimulação precoce a domicílio</strong>
-                    Criar o seu próprio serviço de <strong>estimulação e intervenção a domicílio</strong> para crianças com TEA (0-6 anos). Oferecer pacotes mensais às famílias: sessões semanais de estimulação sensorial, comunicação, habilidades sociais e orientação aos pais. Na Espanha este tipo de serviço chama-se <strong>"Apoyo e intervención en contextos naturales" (SAICON)</strong> e está em alta demanda.
-                    <br><br>
-                    <strong>Diferencial:</strong> Ser brasileira e falar português é uma vantagem — a comunidade brasileira na Espanha é enorme e muitas famílias brasileiras com filhos com TEA preferem apoio no seu idioma.
+                    Pacotes mensais para famílias: estimulação sensorial, comunicação, habilidades sociais. A comunidade brasileira na Espanha é um diferencial — famílias brasileiras preferem apoio no seu idioma.
                 </div>
-
                 <div class="highlight highlight-blue">
-                    <strong>12. Oficinas sensoriais e de brincar para crianças com TEA</strong>
-                    Organizar <strong>oficinas de jogo adaptado</strong> para crianças com autismo — estimulação multissensorial, psicomotricidade, música, arte sensorial. Pode oferecer em centros cívicos, bibliotecas municipais ou em espaço próprio. Muitas famílias procuram atividades assim e não encontram.
-                    <br><br>
-                    <strong>Formato:</strong> Grupos pequenos (3-5 crianças), sessões semanais, por idades (0-3, 3-6, 6-10).
+                    <strong>12. Oficinas sensoriais e de brincar</strong>
+                    Grupos pequenos (3-5 crianças), sessões semanais de jogo adaptado, arte sensorial, psicomotricidade.
                 </div>
-
                 <div class="highlight highlight-blue">
                     <strong>13. Programa de férias e ócio adaptado</strong>
-                    Oferecer <strong>colónias de férias</strong> (campamentos urbanos) e programas de fim de semana para crianças com TEA. Na Espanha muitas famílias ficam sem opções nas férias escolares. Associações como ALEPH-TEA já fazem excursões de fim de semana — pode criar algo semelhante na sua zona.
+                    Colónias de férias urbanas para crianças com TEA — enorme lacuna no mercado espanhol.
                 </div>
-
                 <div class="highlight highlight-blue">
-                    <strong>14. Criação de conteúdo educativo sobre TEA infantil</strong>
-                    Canal no YouTube, Instagram ou blog em português e/ou espanhol sobre autismo na infância — dicas práticas para famílias, como brincar com uma criança autista, estratégias de comunicação, rotinas visuais. O conteúdo sobre TEA infantil em português para famílias brasileiras na Europa é <strong>praticamente inexistente</strong>, o que é uma oportunidade única.
+                    <strong>14. Criação de conteúdo educativo</strong>
+                    YouTube/Instagram sobre TEA infantil em português. Conteúdo para brasileiros na Europa é praticamente inexistente.
                 </div>
-
                 <div class="highlight highlight-blue">
                     <strong>15. Workshops para pais e educadores</strong>
-                    Organizar workshops presenciais ou online: "Como criar rotinas visuais em casa", "Entendendo o processamento sensorial do seu filho", "Estratégias de comunicação para crianças com TEA", "Como brincar de forma terapêutica". Pode oferecer em AMPAs (associações de pais de escolas), centros cívicos ou online.
+                    "Como criar rotinas visuais", "Estratégias de comunicação", "Como brincar de forma terapêutica". Presencial ou online.
+                </div>
+                <div class="highlight highlight-blue">
+                    <strong>16. Consultoria para escolas e creches</strong>
+                    Formação sobre inclusão de alunos com TEA. A lei espanhola exige aceitar crianças com TEA — muitas escolas precisam de ajuda.
+                </div>
+
+                <h4>Passos prévios obrigatórios</h4>
+                <div class="table-wrapper">
+                <table class="levels-table">
+                    <thead><tr><th>Passo</th><th>O quê</th><th>Onde</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>1</strong></td><td>NIE + permissão de trabalho</td><td><a href="https://www.inclusion.gob.es/" target="_blank">Ministerio de Inclusión</a></td></tr>
+                        <tr><td><strong>2</strong></td><td>Alta como autônoma</td><td><a href="https://portal.seg-social.gob.es/wps/portal/importass/importass/Colectivos/Trabajo+Autonomo" target="_blank">Seguridad Social</a></td></tr>
+                        <tr><td><strong>3</strong></td><td>Registro na Agencia Tributaria (IAE)</td><td><a href="https://sede.agenciatributaria.gob.es/" target="_blank">Agencia Tributaria</a></td></tr>
+                        <tr><td><strong>4</strong></td><td>Seguro de responsabilidade civil</td><td>Mapfre, AXA, Zurich, etc.</td></tr>
+                        <tr><td><strong>5</strong></td><td>Iniciar homologação do título</td><td><a href="https://universidades.sede.gob.es" target="_blank">universidades.sede.gob.es</a></td></tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <div class="sources" style="margin-top: 1.5rem; padding: 1.2rem;">
+                    <h4 style="margin-top: 0;">Fontes</h4>
+                    <div class="source-item"><span class="source-badge">Emprego</span><div><a href="https://aetapi.org/oferta-de-empleo/" target="_blank">Tablero de Empleo AETAPI</a></div></div>
+                    <div class="source-item"><span class="source-badge">Emprego</span><div><a href="https://es.indeed.com/q-autismo-empleos.html" target="_blank">Indeed España — autismo</a></div></div>
+                    <div class="source-item"><span class="source-badge">Emprego</span><div><a href="https://autismo.org.es/que-hacemos/lineas-de-accion/empleo/" target="_blank">Empleo — Autismo España</a></div></div>
+                    <div class="source-item"><span class="source-badge">Emprego</span><div><a href="https://www.contratatea.es/category/ofertas-de-empleo/" target="_blank">contrataTEA — Fundación ONCE</a></div></div>
+                </div>
+            </div>
+
+            <!-- MOTIVAÇÃO -->
+            <div class="card" id="motiv" style="border-left: 4px solid #E53E3E; background: linear-gradient(135deg, #FFFFFF 0%, #FFF5F5 100%);">
+                <h3><span class="icon">&#10084;</span> Dayane, isto é para você</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">Você saiu do Brasil com um sonho. Cruzou um oceano não por turismo, mas por <strong>coragem</strong>. E essa mesma coragem que te trouxe até a Espanha é a que vai te levar onde você quer chegar.</p>
+
+                <div class="highlight highlight-red" style="margin: 1.5rem 0;">
+                    <strong>O campo do autismo na Espanha precisa de você.</strong>
+                    A Espanha investirá quase <strong>40 milhões de euros</strong> em TEA (2024-2027). A demanda por profissionais qualificados é real e crescente. Sua formação, experiência e paixão são o seu maior capital.
+                </div>
+
+                <h4>O mercado está ao seu lado</h4>
+                <ul>
+                    <li><strong>127.612 pessoas diagnosticadas</strong> com TEA na Espanha</li>
+                    <li><strong>80-90% das pessoas com TEA</strong> desempregadas e precisam de apoio</li>
+                    <li>Enorme <strong>escassez de profissionais</strong> especializados</li>
+                    <li>A comunidade brasileira na Espanha procura apoio <strong>no seu idioma</strong></li>
+                </ul>
+
+                <div style="background: var(--primary-dark); color: white; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; text-align: center;">
+                    <p style="font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; color: white;">
+                        "Não é sobre ter todas as respostas hoje.<br>É sobre dar o próximo passo com o que você já sabe."
+                    </p>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin: 0; color: rgba(255,255,255,0.8);">
+                        Você já sabe muito. E este guia existe para te ajudar a saber ainda mais.
+                    </p>
+                </div>
+
+                <h4 style="margin-top: 1.5rem;">Próximos passos concretos</h4>
+                <ol>
+                    <li><strong>Estude este guia</strong> — atualize seus conhecimentos</li>
+                    <li><strong>Inicie a homologação</strong> — mesmo que demore</li>
+                    <li><strong>Conecte-se</strong> — Autismo España, AETAPI, associações locais</li>
+                    <li><strong>Comece pequeno</strong> — ofereça apoio a uma família</li>
+                    <li><strong>Monte seu LinkedIn</strong> — use a seção deste guia</li>
+                </ol>
+
+                <p style="margin-top: 1.5rem; font-size: 1.05rem;"><strong>Dayane, o mundo do autismo na Espanha tem espaço para você. Ocupe-o.</strong></p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION: LINKEDIN -->
+    <!-- ============================================ -->
+    <div class="section-view" id="sec-linkedin">
+        <div class="section-header">
+            <h2>💼 Perfil LinkedIn Profissional</h2>
+            <p>Como criar um perfil que destaque a sua especialização em TEA infantil</p>
+        </div>
+        <div class="section-body">
+
+            <div class="card">
+                <h3><span class="icon">📸</span> Foto e Banner</h3>
+                <h4>Foto de perfil</h4>
+                <ul>
+                    <li>Foto profissional, com <strong>fundo neutro</strong> ou de trabalho (nunca selfie)</li>
+                    <li>Rosto visível, <strong>sorriso natural</strong>, boa iluminação</li>
+                    <li>Roupa profissional mas acessível (não excessivamente formal — você trabalha com crianças)</li>
+                    <li>Formato: apenas o rosto e ombros, ocupando pelo menos <strong>60% do quadro</strong></li>
+                </ul>
+                <h4>Banner (imagem de fundo)</h4>
+                <ul>
+                    <li>Use uma imagem que represente a sua área: peças de puzzle coloridas, mãos de criança brincando, materiais sensoriais</li>
+                    <li>Pode adicionar texto com o seu lema profissional ou área de atuação</li>
+                    <li>Tamanho ideal: <strong>1584 x 396 pixels</strong></li>
+                    <li>Ferramentas gratuitas: Canva tem modelos prontos para banner LinkedIn</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3><span class="icon">✏️</span> Titular (Headline)</h3>
+                <p>O titular é a frase que aparece abaixo do seu nome. É o <strong>mais importante</strong> para ser encontrada em buscas. Use <strong>palavras-chave do setor em espanhol</strong>:</p>
+
+                <div class="highlight highlight-blue">
+                    <strong>Modelos de titular</strong>
+                    <br><br>
+                    <strong>Opção 1:</strong> Especialista em Intervenção Infantil com TEA | Estimulación Temprana | Apoyo Conductual
+                    <br><br>
+                    <strong>Opção 2:</strong> Profesional en Autismo Infantil | Atención Temprana | Intervención en Contextos Naturales
+                    <br><br>
+                    <strong>Opção 3:</strong> Monitora de Apoyo TEA Infantil | Estimulación Sensorial | Comunicación Aumentativa
+                </div>
+
+                <div class="highlight highlight-yellow">
+                    <strong>Dica fundamental</strong>
+                    Escreva o titular em <strong>espanhol</strong> — é assim que os recrutadores e famílias na Espanha vão te encontrar. Pode adicionar "Brasileña" no final para mostrar o seu perfil bicultural.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><span class="icon">📄</span> Secção "Acerca de" (Sobre)</h3>
+                <p>Esta é a sua carta de apresentação. Escreva em <strong>espanhol</strong> (com tradução em português opcionalmente abaixo). Use este modelo:</p>
+
+                <div class="linkedin-template">Profesional brasileña especializada en intervención con niños con Trastorno del Espectro Autista (TEA), con experiencia en estimulación temprana, apoyo conductual y comunicación aumentativa.
+
+En Brasil trabajé en [nome do local/tipo de trabalho], donde desarrollé habilidades en:
+• Estimulación multisensorial a través del juego
+• Diseño de rutinas visuales y sistemas de comunicación (PECS, pictogramas)
+• Intervención en contextos naturales (domicilio, escuela)
+• Orientación y formación a familias
+• Trabajo con niños de 0 a [idade] años con diferentes niveles de apoyo
+
+Actualmente en España, busco contribuir con mi experiencia en equipos de atención temprana, centros especializados o servicios de apoyo a familias con niños con autismo.
+
+Formación: [seu título] — [universidade, Brasil]
+Idiomas: Portugués (nativo) | Español (avanzado/fluido)
+
+Palabras clave: TEA, autismo infantil, atención temprana, CDIAT, estimulación sensorial, ABA, TEACCH, Denver, inclusión educativa, apoyo conductual positivo</div>
+
+                <div class="highlight highlight-green">
+                    <strong>Por que incluir palavras-chave no final?</strong>
+                    O algoritmo do LinkedIn usa essas palavras para mostrar o seu perfil em buscas. Recrutadores de centros de autismo buscam exatamente esses termos.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><span class="icon">💼</span> Experiência Profissional</h3>
+                <p>Mesmo que a experiência seja do Brasil, é <strong>fundamental</strong> listá-la. Traduza os cargos para espanhol:</p>
+
+                <div class="table-wrapper">
+                    <table class="levels-table">
+                        <thead><tr><th>Em português</th><th>Em espanhol (LinkedIn)</th></tr></thead>
+                        <tbody>
+                            <tr><td>Acompanhante terapêutica</td><td>Acompañante terapéutica / Sombra escolar TEA</td></tr>
+                            <tr><td>Cuidadora de crianças com TEA</td><td>Cuidadora especializada en niños con TEA</td></tr>
+                            <tr><td>Monitora de atividades</td><td>Monitora de actividades adaptadas para TEA</td></tr>
+                            <tr><td>Estimuladora precoce</td><td>Profesional de estimulación temprana</td></tr>
+                            <tr><td>Estagiária em clínica</td><td>Prácticas en centro de atención a niños con TEA</td></tr>
+                            <tr><td>Professora de reforço</td><td>Profesora de apoyo escolar especializado en TEA</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Para cada experiência, descreva:</h4>
+                <ul>
+                    <li><strong>O quê:</strong> Que tipo de intervenção/apoio realizava</li>
+                    <li><strong>Com quem:</strong> Faixa etária das crianças e nível de apoio</li>
+                    <li><strong>Como:</strong> Métodos utilizados (ABA, TEACCH, Denver, PECS, etc.)</li>
+                    <li><strong>Resultados:</strong> Se possível, mencionar avanços observados</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3><span class="icon">🏷️</span> Competências (Skills) para adicionar</h3>
+                <p>Adicione <strong>todas</strong> estas competências ao seu perfil — são as que recrutadores buscam:</p>
+
+                <div class="highlight highlight-blue">
+                    <strong>Competências essenciais (em espanhol)</strong>
+                    <ul style="margin: 0.5rem 0 0 1.2rem; columns: 2;">
+                        <li>Trastorno del Espectro Autista (TEA)</li>
+                        <li>Atención Temprana</li>
+                        <li>Estimulación Sensorial</li>
+                        <li>Intervención Conductual</li>
+                        <li>ABA (Análisis de Conducta Aplicado)</li>
+                        <li>TEACCH</li>
+                        <li>Modelo Denver (ESDM)</li>
+                        <li>Comunicación Aumentativa (SAAC)</li>
+                        <li>PECS (Sistema de Comunicación por Intercambio de Imágenes)</li>
+                        <li>Pictogramas / ARASAAC</li>
+                        <li>Inclusión Educativa</li>
+                        <li>Apoyo Conductual Positivo</li>
+                        <li>Psicomotricidad</li>
+                        <li>Trabajo con Familias</li>
+                        <li>Educación Especial</li>
+                        <li>Desarrollo Infantil</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><span class="icon">🌐</span> Grupos e Páginas para seguir</h3>
+                <p>Siga estas páginas e participe destes grupos para ganhar visibilidade:</p>
+                <h4>Páginas para seguir</h4>
+                <ul>
+                    <li><strong>Autismo España</strong> — principal organização nacional</li>
+                    <li><strong>AETAPI</strong> — associação de profissionais do autismo</li>
+                    <li><strong>Plena Inclusión</strong> — inclusão de pessoas com deficiência</li>
+                    <li><strong>Fundación ONCE</strong> — emprego inclusivo</li>
+                    <li><strong>Centro Español sobre TEA</strong></li>
+                </ul>
+                <h4>Grupos para participar</h4>
+                <ul>
+                    <li>Buscar: "autismo profesionales España"</li>
+                    <li>Buscar: "atención temprana profesionales"</li>
+                    <li>Buscar: "integración social discapacidad"</li>
+                    <li>Buscar: "brasileiros na Espanha profissionais"</li>
+                </ul>
+
+                <h4>Estratégia de conteúdo</h4>
+                <p>Publique pelo menos <strong>1 vez por semana</strong>:</p>
+                <ul>
+                    <li>Reflexões sobre a sua experiência com crianças com TEA</li>
+                    <li>Dicas práticas para famílias (rotinas visuais, jogos sensoriais)</li>
+                    <li>Artigos que você leu sobre autismo (comente a sua opinião)</li>
+                    <li>Partilha de cursos ou formações que está fazendo</li>
+                    <li>Use hashtags: <strong>#TEA #AutismoInfantil #AtenciónTemprana #InclusiónEducativa #EstimulaciónTemprana</strong></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION: GLOSSÁRIO PT-ES -->
+    <!-- ============================================ -->
+    <div class="section-view" id="sec-glossario">
+        <div class="section-header">
+            <h2>🗣️ Glossário TEA — Português / Espanhol</h2>
+            <p>Terminologia essencial para o dia a dia profissional na Espanha</p>
+        </div>
+        <div class="section-body">
+
+            <div class="card">
+                <h3><span class="icon">📖</span> Termos Essenciais</h3>
+                <p>Domine estes termos em espanhol — você vai precisar deles em entrevistas, reuniões de equipa e relatórios:</p>
+
+                <div class="table-wrapper">
+                    <table class="glossary-table">
+                        <thead><tr><th>Português (Brasil)</th><th>Español (España)</th></tr></thead>
+                        <tbody>
+                            <tr class="glossary-cat"><td colspan="2"><strong>Diagnóstico e Classificação</strong></td></tr>
+                            <tr><td>Transtorno do Espectro Autista (TEA)</td><td>Trastorno del Espectro Autista (TEA)</td></tr>
+                            <tr><td>Diagnóstico precoce</td><td>Diagnóstico precoz / temprano</td></tr>
+                            <tr><td>Sinais de alerta</td><td>Señales de alerta / signos de alarma</td></tr>
+                            <tr><td>Nível de apoio</td><td>Nivel de apoyo</td></tr>
+                            <tr><td>Deficiência intelectual</td><td>Discapacidad intelectual</td></tr>
+                            <tr><td>Comorbidade</td><td>Comorbilidad</td></tr>
+
+                            <tr class="glossary-cat"><td colspan="2"><strong>Intervenção e Terapia</strong></td></tr>
+                            <tr><td>Intervenção precoce / Estimulação precoce</td><td>Atención Temprana / Estimulación Temprana</td></tr>
+                            <tr><td>Análise do Comportamento Aplicada (ACA)</td><td>Análisis de Conducta Aplicado (ABA)</td></tr>
+                            <tr><td>Apoio comportamental positivo</td><td>Apoyo Conductual Positivo (ACP)</td></tr>
+                            <tr><td>Terapia ocupacional</td><td>Terapia Ocupacional</td></tr>
+                            <tr><td>Fonoaudiologia / Fonoaudiólogo</td><td>Logopedia / Logopeda</td></tr>
+                            <tr><td>Psicomotricidade</td><td>Psicomotricidad</td></tr>
+                            <tr><td>Integração sensorial</td><td>Integración Sensorial</td></tr>
+
+                            <tr class="glossary-cat"><td colspan="2"><strong>Comunicação</strong></td></tr>
+                            <tr><td>Comunicação alternativa e aumentativa (CAA)</td><td>Sistemas Aumentativos y Alternativos de Comunicación (SAAC)</td></tr>
+                            <tr><td>Pictogramas</td><td>Pictogramas (ARASAAC é o sistema mais usado na Espanha)</td></tr>
+                            <tr><td>PECS (Sistema de troca de figuras)</td><td>PECS (Sistema de Comunicación por Intercambio de Imágenes)</td></tr>
+                            <tr><td>Agenda visual / Rotina visual</td><td>Agenda visual / Rutina visual</td></tr>
+                            <tr><td>Atenção conjunta</td><td>Atención conjunta</td></tr>
+
+                            <tr class="glossary-cat"><td colspan="2"><strong>Comportamento e Sensorial</strong></td></tr>
+                            <tr><td>Estereotipia / Stimming</td><td>Estereotipia / Stimming</td></tr>
+                            <tr><td>Crise / Colapso</td><td>Crisis / Meltdown</td></tr>
+                            <tr><td>Processamento sensorial</td><td>Procesamiento sensorial</td></tr>
+                            <tr><td>Hipersensibilidade</td><td>Hipersensibilidad / Hiperreactividad</td></tr>
+                            <tr><td>Hipossensibilidade</td><td>Hiposensibilidad / Hiporreactividad</td></tr>
+                            <tr><td>Rigidez comportamental</td><td>Rigidez conductual / Inflexibilidad</td></tr>
+                            <tr><td>Ecolalia</td><td>Ecolalia</td></tr>
+
+                            <tr class="glossary-cat"><td colspan="2"><strong>Educação e Inclusão</strong></td></tr>
+                            <tr><td>Inclusão escolar</td><td>Inclusión educativa</td></tr>
+                            <tr><td>Adaptação curricular</td><td>Adaptación curricular</td></tr>
+                            <tr><td>Professor de apoio</td><td>Profesor de apoyo / PT (Pedagogía Terapéutica)</td></tr>
+                            <tr><td>Sombra / Acompanhante</td><td>Sombra / Monitor de apoyo</td></tr>
+                            <tr><td>Necessidades educativas especiais</td><td>Necesidades Educativas Especiales (NEE)</td></tr>
+                            <tr><td>Sala de recursos</td><td>Aula de apoyo / Aula específica</td></tr>
+
+                            <tr class="glossary-cat"><td colspan="2"><strong>Sistema Espanhol</strong></td></tr>
+                            <tr><td>Centro de intervenção precoce</td><td>CDIAT (Centro de Desarrollo Infantil y Atención Temprana)</td></tr>
+                            <tr><td>Centro de reabilitação (CER)</td><td>Centro de Rehabilitación</td></tr>
+                            <tr><td>Grau de deficiência</td><td>Grado de discapacidad</td></tr>
+                            <tr><td>Grau de dependência</td><td>Grado de dependencia</td></tr>
+                            <tr><td>Trabalhador autônomo</td><td>Trabajador autónomo</td></tr>
+                            <tr><td>Seguridade social</td><td>Seguridad Social</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="highlight highlight-green">
+                    <strong>Dica prática</strong>
+                    O sistema <strong>ARASAAC</strong> (Centro Aragonés para la Comunicación Aumentativa y Alternativa) é o banco de pictogramas mais utilizado na Espanha e é <strong>gratuito</strong>: <a href="https://arasaac.org" target="_blank">arasaac.org</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION: CURRÍCULO MODELO -->
+    <!-- ============================================ -->
+    <div class="section-view" id="sec-curriculo">
+        <div class="section-header">
+            <h2>📝 Currículo Modelo</h2>
+            <p>Modelo de CV adaptado ao formato espanhol para a área de TEA infantil</p>
+        </div>
+        <div class="section-body">
+
+            <div class="card">
+                <h3><span class="icon">📋</span> Estrutura do CV Espanhol</h3>
+                <p>Na Espanha o CV deve ser <strong>em espanhol</strong>, <strong>conciso</strong> (1-2 páginas) e <strong>sem foto</strong> (opcional). Use este modelo como base:</p>
+
+                <div class="cv-block">
+                    <h5>DATOS PERSONALES</h5>
+                    <p><strong>Dayane [Apelido]</strong><br>
+                    [Cidade], España<br>
+                    Teléfono: +34 XXX XXX XXX<br>
+                    Email: dayane@email.com<br>
+                    LinkedIn: linkedin.com/in/dayane-[apelido]<br>
+                    Nacionalidad: Brasileña | NIE: XXXXXXXXX</p>
+                </div>
+
+                <div class="cv-block">
+                    <h5>PERFIL PROFESIONAL</h5>
+                    <p>Profesional brasileña especializada en intervención con niños con Trastorno del Espectro Autista (TEA), con [X] años de experiencia en estimulación temprana, apoyo conductual y comunicación aumentativa. Experiencia con niños de 0 a [X] años con diferentes niveles de apoyo. Manejo de metodologías ABA, TEACCH y Modelo Denver. Bilingüe portugués-español.</p>
+                </div>
+
+                <div class="cv-block">
+                    <h5>EXPERIENCIA PROFESIONAL</h5>
+                    <p><strong>Profesional de Estimulación Temprana y Apoyo TEA</strong><br>
+                    [Nome do local] — [Cidade], Brasil | [Mês/Ano] – [Mês/Ano]</p>
+                    <ul>
+                        <li>Intervención individual con niños de [X] a [X] años diagnosticados con TEA (Niveles 1, 2 y 3)</li>
+                        <li>Diseño e implementación de programas de estimulación multisensorial</li>
+                        <li>Creación de rutinas visuales y sistemas de comunicación aumentativa (PECS, pictogramas)</li>
+                        <li>Orientación y formación a familias sobre estrategias de apoyo en el hogar</li>
+                        <li>Trabajo coordinado con equipo multidisciplinar (psicóloga, logopeda, terapeuta ocupacional)</li>
+                    </ul>
+                </div>
+
+                <div class="cv-block">
+                    <h5>FORMACIÓN ACADÉMICA</h5>
+                    <p><strong>[Nome do curso/título]</strong><br>
+                    [Universidade] — [Cidade], Brasil | [Ano de conclusão]<br>
+                    <em>Título en proceso de homologación en España (expediente nº XXXX)</em></p>
+                </div>
+
+                <div class="cv-block">
+                    <h5>FORMACIÓN COMPLEMENTARIA</h5>
+                    <ul>
+                        <li>[Curso sobre TEA que tenha feito] — [Instituição] ([Ano])</li>
+                        <li>[Outro curso relevante] — [Instituição] ([Ano])</li>
+                    </ul>
+                </div>
+
+                <div class="cv-block">
+                    <h5>IDIOMAS</h5>
+                    <p>Portugués: Nativo<br>
+                    Español: Avanzado / Fluido (C1)<br>
+                    [Inglés: Intermedio (B1) — se aplicável]</p>
+                </div>
+
+                <div class="cv-block">
+                    <h5>COMPETENCIAS PROFESIONALES</h5>
+                    <p>Atención Temprana | ABA | TEACCH | Modelo Denver | Comunicación Aumentativa (SAAC/PECS) | Estimulación Sensorial | Rutinas Visuales | Psicomotricidad | Trabajo con Familias | Inclusión Educativa | Apoyo Conductual Positivo</p>
+                </div>
+
+                <div class="highlight highlight-yellow">
+                    <strong>Dicas importantes para o CV na Espanha</strong>
+                    <ul style="margin: 0.5rem 0 0 1.2rem;">
+                        <li>Mencione que o título está <strong>em processo de homologação</strong> — mostra proatividade</li>
+                        <li>Inclua <strong>"Autorización para trabajar en España"</strong> se tiver permissão</li>
+                        <li>Não coloque idade, estado civil ou número de filhos (não é habitual na Espanha)</li>
+                        <li>Use verbos de ação: diseñé, implementé, coordiné, desarrollé</li>
+                        <li>Formato: PDF, nome do ficheiro: <strong>CV_Dayane_Apelido_TEA.pdf</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION: PREPARAÇÃO PARA ENTREVISTAS -->
+    <!-- ============================================ -->
+    <div class="section-view" id="sec-entrevistas">
+        <div class="section-header">
+            <h2>🎯 Preparação para Entrevistas</h2>
+            <p>Perguntas frequentes e como apresentar a sua experiência</p>
+        </div>
+        <div class="section-body">
+
+            <div class="card">
+                <h3><span class="icon">❓</span> Perguntas Frequentes em Entrevistas</h3>
+                <p>Estas são perguntas reais que fazem em entrevistas para trabalhar com TEA na Espanha. Prepare as respostas em <strong>espanhol</strong>:</p>
+
+                <h4>1. "Cuéntanos sobre tu experiencia con niños con autismo"</h4>
+                <div class="highlight highlight-green">
+                    <strong>Como responder</strong>
+                    Fale da sua experiência no Brasil de forma concreta: faixa etária das crianças, métodos utilizados, tipos de intervenção. Dê <strong>exemplos específicos</strong> de situações e resultados. Ex: "Trabalhei com crianças de 2 a 6 anos com TEA nível 1 e 2, utilizando metodologia ABA e rotinas visuais. Uma das crianças que acompanhei durante 8 meses evoluiu de comunicação não verbal para uso de PECS com 20 pictogramas."
+                </div>
+
+                <h4>2. "¿Cómo actuarías ante una crisis sensorial de un niño?"</h4>
+                <div class="highlight highlight-green">
+                    <strong>Como responder</strong>
+                    Demonstre conhecimento prático: "Primeiro, garantiria a segurança da criança e reduziria os estímulos do ambiente. Depois, usaria estratégias de regulação que conheço da criança (pode ser pressão profunda, objeto de conforto, espaço seguro). Importante: nunca forçar contacto visual ou falar em excesso durante uma crise. Após a crise, validar a emoção e dar tempo de recuperação."
+                </div>
+
+                <h4>3. "¿Qué metodologías de intervención conoces?"</h4>
+                <div class="highlight highlight-green">
+                    <strong>Como responder</strong>
+                    Mencione as três principais: <strong>ABA</strong> (reforço positivo, análise funcional do comportamento), <strong>TEACCH</strong> (estruturação do ambiente, rotinas visuais), <strong>Denver/ESDM</strong> (intervenção naturalista baseada no jogo). Diga qual utiliza mais e porquê.
+                </div>
+
+                <h4>4. "¿Por qué quieres trabajar en España en este sector?"</h4>
+                <div class="highlight highlight-green">
+                    <strong>Como responder</strong>
+                    Seja genuína: fale da sua paixão pelo trabalho com crianças com TEA, do desejo de contribuir com a sua experiência na Espanha, e do compromisso com a formação contínua. Mencione que conhece o Plano de Ação espanhol para o TEA e as organizações de referência.
+                </div>
+
+                <h4>5. "¿Cómo trabajas con las familias?"</h4>
+                <div class="highlight highlight-green">
+                    <strong>Como responder</strong>
+                    "Considero as famílias parceiras fundamentais. Incluo os pais no processo: ensino estratégias para usar em casa, crio guias visuais, faço sessões de orientação e mantenho comunicação constante sobre progressos e objetivos. As famílias são quem mais tempo passa com a criança — empoderá-las é essencial."
+                </div>
+
+                <h4>6. "Tu título no está homologado aún, ¿cómo afecta eso?"</h4>
+                <div class="highlight highlight-green">
+                    <strong>Como responder</strong>
+                    "O processo de homologação está em andamento. Enquanto isso, a minha experiência prática e formação são válidas para posições de apoio, monitoria e estimulação. Estou também a complementar a minha formação com [curso/FP que esteja fazendo na Espanha]. O mais importante é a qualidade do trabalho que posso oferecer às crianças."
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><span class="icon">💡</span> Dicas Culturais para Entrevistas na Espanha</h3>
+                <ul>
+                    <li><strong>Pontualidade:</strong> Chegue 5-10 minutos antes (na Espanha, chegar tarde não é tão aceitável no contexto profissional como se pensa)</li>
+                    <li><strong>Cumprimento:</strong> Na Espanha, é comum dar <strong>dois beijos</strong> (nas bochechas), mas em contexto profissional pode oferecer a mão</li>
+                    <li><strong>Trato:</strong> Pode tratar por "tú" na maioria dos contextos laborais — na Espanha é mais informal que no Brasil</li>
+                    <li><strong>Documentos:</strong> Leve cópias do CV, certificados e NIE/permissão de trabalho</li>
+                    <li><strong>Perguntar:</strong> No final, faça perguntas: "¿Cómo es el equipo?", "¿Qué perfil de niños atendéis?", "¿Hay formación continua?"</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION: ROTEIRO DE ESTUDOS -->
+    <!-- ============================================ -->
+    <div class="section-view" id="sec-roteiro">
+        <div class="section-header">
+            <h2>📅 Roteiro de Estudos</h2>
+            <p>Plano de estudo semanal para dominar todos os temas</p>
+        </div>
+        <div class="section-body">
+
+            <div class="card">
+                <h3><span class="icon">🗓️</span> Plano de 12 Semanas</h3>
+                <p>Sugestão de estudo dedicando <strong>1-2 horas por dia</strong>, 5 dias por semana. Adapte ao seu ritmo:</p>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker" style="background: var(--success);">1</div>
+                    <div class="timeline-content">
+                        <h5>Semana 1-2: Definição e Diagnóstico</h5>
+                        <p>Estude o Tema 1 deste guia. Leia os critérios DSM-5 e CID-11. Compare o sistema brasileiro e espanhol.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <h5>Semana 3: Desenvolvimento Cerebral</h5>
+                        <p>Neuroplasticidade, períodos críticos do desenvolvimento, impacto no TEA.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <h5>Semana 4: Conectividade Neuronal + Processamento Sensorial</h5>
+                        <p>Teorias de conectividade, hiper/hipoconectividade. Perfil sensorial das crianças com TEA.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <h5>Semana 5: Neurônios Espelho + Estruturas Cerebrais</h5>
+                        <p>Teoria dos neurônios espelho no autismo. Amígdala, cerebelo, córtex pré-frontal.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">5</div>
+                    <div class="timeline-content">
+                        <h5>Semana 6: Genética do Autismo</h5>
+                        <p>Fatores genéticos, epigenética, estudos de gémeos, genes candidatos.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">6</div>
+                    <div class="timeline-content">
+                        <h5>Semana 7: Autismo em Meninas + Potenciais</h5>
+                        <p>Camuflagem feminina, subdiagnóstico. Habilidades especiais, savantismo, pontos fortes.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">7</div>
+                    <div class="timeline-content">
+                        <h5>Semana 8: Perspectivas Futuras</h5>
+                        <p>Investigação atual, biomarcadores, tecnologia assistiva, neurodiversidade.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">8</div>
+                    <div class="timeline-content">
+                        <h5>Semana 9-10: Métodos (TEACCH, ABA, Denver)</h5>
+                        <p>Estudo aprofundado dos três métodos: princípios, técnicas, evidência científica, aplicação prática.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">9</div>
+                    <div class="timeline-content">
+                        <h5>Semana 11: Carreira na Espanha</h5>
+                        <p>Convalidação, oportunidades, montar LinkedIn e CV. Pesquisar vagas reais.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker" style="background: var(--accent);">10</div>
+                    <div class="timeline-content">
+                        <h5>Semana 12: Revisão + Ação</h5>
+                        <p>Revise tudo, pratique entrevistas em espanhol, candidate-se a pelo menos 3 posições.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><span class="icon">✅</span> Dicas de Estudo</h3>
+                <ul>
+                    <li><strong>Estude em espanhol:</strong> Leia artigos e veja vídeos em espanhol para dominar a terminologia</li>
+                    <li><strong>Faça resumos:</strong> Escreva resumos de cada tema em espanhol (serve como treino)</li>
+                    <li><strong>Use o glossário:</strong> Consulte a seção de glossário para cada termo novo</li>
+                    <li><strong>Pratique explicar:</strong> Tente explicar cada conceito como se estivesse numa entrevista</li>
+                    <li><strong>Conecte teoria e prática:</strong> Para cada tema, pense em exemplos da sua experiência no Brasil</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION: RECURSOS GRATUITOS -->
+    <!-- ============================================ -->
+    <div class="section-view" id="sec-recursos">
+        <div class="section-header">
+            <h2>🎓 Recursos Gratuitos</h2>
+            <p>Cursos, vídeos, ferramentas e materiais gratuitos sobre TEA</p>
+        </div>
+        <div class="section-body">
+
+            <div class="card">
+                <h3><span class="icon">🖥️</span> Cursos Online Gratuitos</h3>
+
+                <div class="highlight highlight-blue">
+                    <strong>ARASAAC — Formação em Comunicação Aumentativa</strong>
+                    Portal aragonés de comunicação aumentativa. Oferece materiais, pictogramas e formação gratuita. Essencial para trabalhar com TEA na Espanha.<br>
+                    <a href="https://arasaac.org" target="_blank">arasaac.org</a>
                 </div>
 
                 <div class="highlight highlight-blue">
-                    <strong>16. Consultoria para escolas e creches</strong>
-                    Oferecer formação sobre <strong>inclusão de alunos com TEA</strong> a escolas, creches e empresas de atividades infantis. A nova lei de Formação Profissional espanhola exige atenção específica ao autismo, e a <a href="https://autismo.org.es/actualidad/noticias/guia-actividades-extraescolares-menores-autismo/" target="_blank" rel="noopener">guia de Autismo España sobre extraescolares</a> mostra que é obrigatório aceitar crianças com TEA — muitas escolas precisam de ajuda para saber como.
+                    <strong>Campus Autismo España — Ángel Rivière</strong>
+                    Plataforma de formação da Confederación Autismo España. Oferece cursos para profissionais e famílias. Alguns são gratuitos.<br>
+                    <a href="https://autismo.org.es/que-hacemos/lineas-de-accion/formacion/" target="_blank">autismo.org.es — Formación</a>
                 </div>
 
-                <!-- Passos prévios -->
-                <h4>Passos prévios obrigatórios</h4>
-                <table class="levels-table">
-                    <thead>
-                        <tr>
-                            <th>Passo</th>
-                            <th>O quê</th>
-                            <th>Onde</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>1</strong></td>
-                            <td>Ter <strong>NIE</strong> (Número de Identidade de Estrangeiro) e <strong>permissão de trabalho</strong></td>
-                            <td><a href="https://www.inclusion.gob.es/" target="_blank" rel="noopener">Ministerio de Inclusión</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>2</strong></td>
-                            <td>Dar-se de <strong>alta como autônoma</strong> na Seguridade Social e Hacienda</td>
-                            <td><a href="https://portal.seg-social.gob.es/wps/portal/importass/importass/Colectivos/Trabajo+Autonomo" target="_blank" rel="noopener">Seguridad Social — Autónomos</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>3</strong></td>
-                            <td>Registrar-se na <strong>Agencia Tributaria</strong> (alta no IAE — epígrafe de atividade)</td>
-                            <td><a href="https://sede.agenciatributaria.gob.es/" target="_blank" rel="noopener">Agencia Tributaria</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>4</strong></td>
-                            <td>Contratar <strong>seguro de responsabilidade civil</strong> (obrigatório para serviços a domicílio)</td>
-                            <td>Qualquer seguradora (Mapfre, AXA, Zurich, etc.)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>5</strong></td>
-                            <td><strong>Iniciar processo de homologação</strong> do título (em paralelo)</td>
-                            <td><a href="https://universidades.sede.gob.es" target="_blank" rel="noopener">universidades.sede.gob.es</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="sources" style="margin-top: 1.5rem; padding: 1.2rem;">
-                    <h4 style="margin-top: 0;">Fontes desta seção</h4>
-                    <div class="source-item">
-                        <span class="source-badge">Emprego</span>
-                        <div><a href="https://aetapi.org/oferta-de-empleo/" target="_blank" rel="noopener">Tablero de Empleo AETAPI — ofertas para profissionais do TEA</a></div>
-                    </div>
-                    <div class="source-item">
-                        <span class="source-badge">Emprego</span>
-                        <div><a href="https://es.indeed.com/q-autismo-empleos.html" target="_blank" rel="noopener">Indeed España — ofertas de emprego em autismo</a></div>
-                    </div>
-                    <div class="source-item">
-                        <span class="source-badge">Emprego</span>
-                        <div><a href="https://autismo.org.es/que-hacemos/lineas-de-accion/empleo/" target="_blank" rel="noopener">Empleo y Autismo — Confederación Autismo España</a></div>
-                    </div>
-                    <div class="source-item">
-                        <span class="source-badge">Emprego</span>
-                        <div><a href="https://www.contratatea.es/category/ofertas-de-empleo/" target="_blank" rel="noopener">contrataTEA — plataforma de emprego inclusivo (Fundación ONCE)</a></div>
-                    </div>
-                    <div class="source-item">
-                        <span class="source-badge">Oficial</span>
-                        <div><a href="https://portal.seg-social.gob.es/wps/portal/importass/importass/Colectivos/Trabajo+Autonomo/guia" target="_blank" rel="noopener">Guía práctica de trabajo autónomo — Seguridad Social España</a></div>
-                    </div>
-                    <div class="source-item">
-                        <span class="source-badge">FP</span>
-                        <div><a href="https://www.todofp.es/que-estudiar/familias-profesionales/servicios-socioculturales-comunidad/atencion-personas-situacion-dependencia.html" target="_blank" rel="noopener">TAPSD — TodoFP (Ministerio de Educación España)</a></div>
-                    </div>
+                <div class="highlight highlight-blue">
+                    <strong>UNED Abierta</strong>
+                    A Universidade Nacional de Educação a Distância da Espanha oferece cursos abertos (MOOCs) sobre educação, inclusão e psicologia. Buscar cursos sobre "autismo" ou "necesidades educativas especiales".<br>
+                    <a href="https://iedra.uned.es" target="_blank">iedra.uned.es</a>
                 </div>
-            </section>
 
-            <!-- ============================================ -->
-            <!-- SEÇÃO: MOTIVAÇÃO -->
-            <!-- ============================================ -->
-            <section id="sec-motivacao" style="margin-top: 2rem; scroll-margin-top: 80px;">
-                <div class="card" style="border-left: 4px solid #E53E3E; background: linear-gradient(135deg, #FFFFFF 0%, #FFF5F5 100%);">
-                    <h3><span class="icon">&#10084;</span> Dayane, isto é para você</h3>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">
-                        Você saiu do Brasil com um sonho. Cruzou um oceano não por turismo, mas por <strong>coragem</strong>. E essa mesma coragem que te trouxe até a Espanha é a que vai te levar onde você quer chegar.
-                    </p>
-
-                    <div class="highlight highlight-red" style="margin: 1.5rem 0;">
-                        <strong>O campo do autismo na Espanha precisa de você.</strong>
-                        Com o Plano de Ação 2024-2027, a Espanha investirá quase <strong>40 milhões de euros</strong> em TEA. Estão formando 2.000 profissionais por ano. A demanda por pessoas qualificadas, sensíveis e dedicadas é real e crescente. Sua formação no Brasil, sua experiência e a sua paixão pelo tema são o seu maior capital.
-                    </div>
-
-                    <h4>O mercado está ao seu lado</h4>
-                    <ul>
-                        <li>A Espanha tem <strong>127.612 pessoas diagnosticadas</strong> com TEA — e muitas mais sem diagnóstico</li>
-                        <li><strong>80-90% das pessoas com TEA</strong> estão desempregadas e precisam de apoio profissional</li>
-                        <li>Existe uma <strong>enorme escassez</strong> de profissionais especializados em autismo</li>
-                        <li>A comunidade brasileira na Espanha é grande — famílias brasileiras com filhos com TEA procuram apoio <strong>no seu idioma</strong></li>
-                        <li>Organizações como a <strong>Casa Batlló em Barcelona</strong> já empregam mais de 80 pessoas neurodivergentes — a inclusão está crescendo</li>
-                    </ul>
-
-                    <h4>O caminho é real</h4>
-                    <p>
-                        Sim, a homologação leva tempo. Sim, o sistema é diferente. Mas enquanto espera, pode começar. O apoio a domicílio, as aulas particulares, o conteúdo educativo — tudo isso pode ser o <strong>início do seu próprio projeto</strong>. Muitos profissionais na Espanha começaram assim, construindo o seu nome de baixo para cima, e hoje dirigem serviços, associações e centros.
-                    </p>
-
-                    <div style="background: var(--primary-dark); color: white; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; text-align: center;">
-                        <p style="font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; color: white;">
-                            "Não é sobre ter todas as respostas hoje.<br>
-                            É sobre dar o próximo passo com o que você já sabe."
-                        </p>
-                        <p style="font-size: 0.9rem; opacity: 0.8; margin: 0; color: rgba(255,255,255,0.8);">
-                            Você já sabe muito. E este guia existe para te ajudar a saber ainda mais.
-                        </p>
-                    </div>
-
-                    <h4 style="margin-top: 1.5rem;">Próximos passos concretos</h4>
-                    <ol>
-                        <li><strong>Estude este guia</strong> — atualize seus conhecimentos com fontes oficiais europeias</li>
-                        <li><strong>Inicie a homologação</strong> — mesmo que demore, o processo já mostra intenção profissional</li>
-                        <li><strong>Conecte-se</strong> — siga a Autismo España, AETAPI e associações da sua Comunidade Autônoma nas redes sociais</li>
-                        <li><strong>Comece pequeno</strong> — ofereça apoio a uma família, crie um perfil profissional, participe de voluntariado</li>
-                        <li><strong>Continue aprendendo</strong> — o Campus Autismo España-Ángel Rivière oferece formações online</li>
-                    </ol>
-
-                    <p style="margin-top: 1.5rem; font-size: 1.05rem;">
-                        <strong>Dayane, o mundo do autismo na Espanha tem espaço para você. Ocupe-o.</strong>
-                    </p>
+                <div class="highlight highlight-blue">
+                    <strong>OpenLearn — The Open University</strong>
+                    Cursos gratuitos em inglês sobre autismo, incluindo "Understanding autism" e "Good practice in autism education".<br>
+                    <a href="https://www.open.edu/openlearn/free-courses" target="_blank">open.edu/openlearn</a>
                 </div>
-            </section>
+            </div>
 
-            <footer>
-                <p>Material de estudo elaborado com base em fontes científicas oficiais. Não substitui orientação profissional.</p>
-                <p>Conteúdo organizado para fins educativos — 2026</p>
-            </footer>
+            <div class="card">
+                <h3><span class="icon">📺</span> Canais e Recursos em Vídeo</h3>
+                <ul>
+                    <li><strong>Autismo España (YouTube)</strong> — Vídeos institucionais, campanhas de sensibilização e depoimentos</li>
+                    <li><strong>AETAPI (YouTube)</strong> — Conferências e jornadas profissionais gravadas</li>
+                    <li><strong>Fundación Orange</strong> — Projetos tecnológicos e aplicações para autismo</li>
+                    <li><strong>TEDx Talks sobre autismo</strong> — Buscar "autismo" ou "autism" no YouTube/TEDx</li>
+                </ul>
+            </div>
 
+            <div class="card">
+                <h3><span class="icon">🔧</span> Ferramentas Gratuitas</h3>
+
+                <div class="highlight highlight-green">
+                    <strong>ARASAAC — Pictogramas</strong>
+                    Mais de 12.000 pictogramas gratuitos. O sistema padrão na Espanha para comunicação aumentativa. Inclui criador de quadros de comunicação, rotinas visuais e materiais educativos.<br>
+                    <a href="https://arasaac.org" target="_blank">arasaac.org</a>
+                </div>
+
+                <div class="highlight highlight-green">
+                    <strong>Pictotraductor</strong>
+                    Converte frases em pictogramas automaticamente. Útil para criar materiais visuais rapidamente.<br>
+                    <a href="https://www.pictotraductor.com" target="_blank">pictotraductor.com</a>
+                </div>
+
+                <div class="highlight highlight-green">
+                    <strong>Canva</strong>
+                    Para criar materiais visuais profissionais: rotinas visuais, quadros de comunicação, apresentações para workshops. Versão gratuita é suficiente.<br>
+                    <a href="https://www.canva.com" target="_blank">canva.com</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><span class="icon">📚</span> Documentos e Guias Oficiais (PDF gratuito)</h3>
+                <ul>
+                    <li><strong>Linha de Cuidado TEA — Ministério da Saúde do Brasil</strong><br>
+                        <a href="https://linhasdecuidado.saude.gov.br/portal/transtorno-do-espectro-autista/" target="_blank">linhasdecuidado.saude.gov.br</a></li>
+                    <li><strong>Manual de Orientação TEA — Sociedade Brasileira de Pediatria</strong><br>
+                        <a href="https://www.sbp.com.br/fileadmin/user_upload/Ped._Desenvolvimento_-_21775b-MO_-_Transtorno_do_Espectro_do_Autismo.pdf" target="_blank">SBP — Manual TEA (PDF)</a></li>
+                    <li><strong>Guia de Atividades Extraescolares para Menores com Autismo — Autismo España</strong><br>
+                        <a href="https://autismo.org.es/actualidad/noticias/guia-actividades-extraescolares-menores-autismo/" target="_blank">autismo.org.es — Guia extraescolares</a></li>
+                    <li><strong>Estratégia Espanhola sobre TEA — Governo de Espanha</strong><br>
+                        <a href="https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/derechos-sociales-consumo-agenda-2030/paginas/2024/020424-plan-accion-autismo.aspx" target="_blank">Plan de Acción TEA 2024-2027</a></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3><span class="icon">🔗</span> Portais de Emprego Especializados</h3>
+                <ul>
+                    <li><a href="https://aetapi.org/oferta-de-empleo/" target="_blank"><strong>AETAPI — Tablero de Empleo</strong></a> — Ofertas específicas para profissionais do autismo</li>
+                    <li><a href="https://www.contratatea.es/category/ofertas-de-empleo/" target="_blank"><strong>contrataTEA</strong></a> — Plataforma de emprego inclusivo (Fundación ONCE)</li>
+                    <li><a href="https://es.indeed.com/q-autismo-empleos.html" target="_blank"><strong>Indeed — "autismo"</strong></a> — Busca geral de empregos relacionados</li>
+                    <li><a href="https://www.infojobs.net" target="_blank"><strong>InfoJobs</strong></a> — Buscar: "monitor apoyo TEA", "autismo infantil", "atención temprana"</li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -1433,30 +1499,51 @@
     <button class="back-top" id="backTop" onclick="window.scrollTo({top:0})" aria-label="Voltar ao topo">&#9650;</button>
 
     <script>
-        // Sidebar toggle
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
-            document.getElementById('overlay').classList.toggle('show');
+        function showSection(id) {
+            document.getElementById('landing').style.display = 'none';
+            var sections = document.querySelectorAll('.section-view');
+            for (var i = 0; i < sections.length; i++) sections[i].classList.remove('active');
+            var target = document.getElementById(id);
+            if (target) target.classList.add('active');
+            document.getElementById('btnBack').classList.add('visible');
+            window.scrollTo({top: 0});
+            history.pushState(null, '', '#' + id);
         }
 
-        function closeSidebar() {
-            document.getElementById('sidebar').classList.remove('open');
-            document.getElementById('overlay').classList.remove('show');
+        function showLanding() {
+            var sections = document.querySelectorAll('.section-view');
+            for (var i = 0; i < sections.length; i++) sections[i].classList.remove('active');
+            document.getElementById('landing').style.display = 'block';
+            document.getElementById('btnBack').classList.remove('visible');
+            window.scrollTo({top: 0});
+            history.pushState(null, '', window.location.pathname);
         }
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', function() {
+            var hash = window.location.hash.substring(1);
+            if (hash) showSection(hash);
+            else showLanding();
+        });
+
+        // Handle direct URL with hash
+        window.addEventListener('DOMContentLoaded', function() {
+            var hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            }
+        });
 
         // Back to top button
         window.addEventListener('scroll', function() {
             var btn = document.getElementById('backTop');
-            if (window.scrollY > 400) {
-                btn.classList.add('show');
-            } else {
-                btn.classList.remove('show');
-            }
+            if (window.scrollY > 400) btn.classList.add('show');
+            else btn.classList.remove('show');
         });
 
-        // Close sidebar on ESC
+        // ESC to go back to landing
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeSidebar();
+            if (e.key === 'Escape') showLanding();
         });
     </script>
 
